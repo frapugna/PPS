@@ -9,5 +9,5 @@ public class Main {
 		System.out.println(tmp.RNG());
 		new IAmAClass();
 	}
-
+	
 }
