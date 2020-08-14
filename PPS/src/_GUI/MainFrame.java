@@ -22,8 +22,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.add(new MainPanel(mainFrame));
-		
 		mainFrame.setVisible(true);
+		
 	}
 
 	@Override

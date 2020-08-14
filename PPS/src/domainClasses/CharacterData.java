@@ -5,23 +5,23 @@ package domainClasses;
  * It also implements an additional gethp() method
  * 
  */
-public class CharacterData extends AbstractCardData{
+public abstract class CharacterData extends AbstractCardData{
 	/*
 	 * hp: the starting hp of the character
 	 */
 	int hp;
-
+	/*
+	 * The only difference with parent's constructor is the parameter hp
+	 */
 	public CharacterData(String imagePath, String name, int hp) {
 		super(imagePath, name);
 		this.hp = hp;
 	}
-	
 	/*
 	 * This method returns the starting hp
 	 */
 	public int gethp() {
 		return hp;
 	}
-	
-	
+		
 }

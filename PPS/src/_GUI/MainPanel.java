@@ -1,8 +1,10 @@
 package _GUI;
 
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
@@ -23,20 +25,30 @@ public class MainPanel extends JPanel{
 		super();
 		
 		this.parent = parent;
-		
-		this.setLayout(null);
-		
+
 		this.playButton = new JButton("New Game");
-		this.setBounds(20, 20, 20, 10);
-		this.add(this.playButton);
-		
 		this.highScoreButton = new JButton("High Score");
-		this.highScoreButton.setLocation(parent.getWidth() / 2, parent.getHeight() / 2);
-		this.add(this.highScoreButton);
-		
 		this.tutorialButton = new JButton("Tutorial");
-		this.playButton.setLocation(parent.getWidth() / 2, parent.getHeight() - 30);
-		this.add(this.tutorialButton);
+	
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.insets = new Insets(60, 0, 0, 0);
+		gbc.weighty = parent.getHeight();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 600;
+		gbc.fill = gbc.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.NORTH;
+		this.add(this.playButton, gbc);
+		
+		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = GridBagConstraints.CENTER;
+		this.add(this.highScoreButton, gbc);
+		
+		gbc.insets = new Insets(0,0,60,0);
+		gbc.anchor = GridBagConstraints.SOUTH;
+		this.add(this.tutorialButton, gbc);
 		
 		
 		
