@@ -12,31 +12,20 @@ public class CardDeck {
 	/*
 	 * Thoose Lists are the leeves of the tree
 	 */
-	List<? extends AbstractCardData> minionList;
-	List<? extends AbstractCardData> potionList;
-	List<? extends AbstractCardData> repairPotionList;
-	List<? extends AbstractCardData> trapList;
-	List<? extends AbstractCardData> weaponList;
-	
-	int weapons;
-	int potions;
-	int repairPotions;
-	int traps;
-	int minions;
+	List<? super AbstractCardData> minionList;
+	List<? super AbstractCardData> potionList;
+	List<? super AbstractCardData> repairPotionList;
+	List<? super AbstractCardData> trapList;
+	List<? super AbstractCardData> weaponList;
 	/*
 	 * This collection contains all the good classes
 	 */
-	HashMap<String, List<? extends AbstractCardData>> goodCategoriesMap;
-	int goodCategories;
+	HashMap<String, List<? super AbstractCardData>> goodCategoriesMap;
 	/*
 	 * This collection contains all the evil classes
 	 */
-	HashMap<String, List<? extends AbstractCardData>> evilCategoriesMap;
-	int evilCategories;
-	/*
-	 * This is the top-level HashMap, it is needed to select the cards' alignement by the Dealer class
-	 */
-	HashMap<String,HashMap<String,List<? extends AbstractCardData>>> alignementMap;
+	HashMap<String, List<? super AbstractCardData>> evilCategoriesMap;
+
 	int alignements;
 	
 	public CardDeck() {
@@ -44,91 +33,58 @@ public class CardDeck {
 		
 		minionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		minions = 0;//after adding other elements increment this
+		minionList.add(new MinionData(null, "Minion", 6));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		minionList.add(new MinionData(null, "Minion2", 4));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		
 	
 		potionList = new ArrayList<AbstractCardData>();
-		potions = 0;//after adding other elements increment this
+
 		//add card data here
+		potionList.add(new PotionData(null, "Potion", 12));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		potionList.add(new PotionData(null, "Potion2", 1));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
 		
 		repairPotionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		repairPotions = 0;//after adding other elements increment this
+		repairPotionList.add(new RepairPotionData(null, "Rp", 12));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		repairPotionList.add(new RepairPotionData(null, "Rp2", 6));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+
 		
 		trapList = new ArrayList<AbstractCardData>();
 		//add card data here
-		traps  = 0;	//after adding other elements increment this
+		trapList.add(new TrapData(null, "Trap", 2));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		trapList.add(new TrapData(null, "Trap2", 82));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+	
 		
 		weaponList = new ArrayList<AbstractCardData>();
 		//add card data here
-		weapons = 0;	//after adding other elements increment this
+		weaponList.add(new WeaponData(null, "Weapon", 4));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		weaponList.add(new WeaponData(null, "Weapon2", 100000));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+	
 		
-		goodCategoriesMap = new HashMap<String, List<? extends AbstractCardData>>();
+		goodCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
 		
 		goodCategoriesMap.put("Potion", potionList);
 		goodCategoriesMap.put("RepairPotion", repairPotionList);
 		goodCategoriesMap.put("Weapon", weaponList);
-		goodCategories = 3;
+	
 		
-		evilCategoriesMap = new HashMap<String, List<? extends AbstractCardData>>();
+		evilCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
 		
 		evilCategoriesMap.put("Minion", minionList);
 		evilCategoriesMap.put("Trap", trapList);
-		evilCategories = 2;
-		
-		alignementMap = new HashMap<String,HashMap<String,List<? extends AbstractCardData>>>();
-		
-		alignementMap.put("Good", goodCategoriesMap);
-		alignementMap.put("Evil", evilCategoriesMap);
+	
 		alignements = 2;
 	}
-
-	public int getWeapons() {
-		return weapons;
-	}
-
-
-	public int getPotions() {
-		return potions;
-	}
-
-
-
-	public int getRepairPotions() {
-		return repairPotions;
-	}
-
-
-	public int getTraps() {
-		return traps;
-	}
-
-
-
-	public int getMinions() {
-		return minions;
-	}
-
-
-
-	public int getGoodCategories() {
-		return goodCategories;
-	}
-
-
-	public int getEvilCategories() {
-		return evilCategories;
-	}
-
-
-
-	public HashMap<String, HashMap<String, List<? extends AbstractCardData>>> getAlignementMap() {
-		return alignementMap;
-	}
-
-
 
 	public int getAlignements() {
 		return alignements;
 	}
 
+	public HashMap<String, List<? super AbstractCardData>> getGoodCategoriesMap() {
+		return goodCategoriesMap;
+	}
+
+	public HashMap<String, List<? super AbstractCardData>> getEvilCategoriesMap() {
+		return evilCategoriesMap;
+	}
 }

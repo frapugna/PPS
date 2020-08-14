@@ -2,11 +2,11 @@ package domainClasses;
 /*
  * It extends the AbstractCardData giving an additional attribute
  */
-public class WeaponData {
+public class WeaponData extends AbstractCardData{
 	int durability;
 	
-	public WeaponData(int durability) {
-		super();
+	public WeaponData(String imagePath, String name, int durability) {
+		super(imagePath, name);
 		this.durability = durability;
 	}
 
