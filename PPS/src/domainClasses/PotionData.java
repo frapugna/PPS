@@ -1,5 +1,5 @@
 package domainClasses;
 
-public class ItemData {
+public class PotionData {
 
 }
