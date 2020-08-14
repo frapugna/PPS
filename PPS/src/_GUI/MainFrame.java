@@ -27,7 +27,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	public MainFrame() {
 		
-		windowTitle = "Temporary title";
+		windowTitle = "Excore";
 		frameWidth = 1000;
 		frameHeight = 500;
 		
