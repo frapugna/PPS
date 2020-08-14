@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame implements ActionListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public JFrame mainFrame;
 	public String windowTitle;
 	int frameWidth, frameHeight;

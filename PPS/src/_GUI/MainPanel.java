@@ -1,11 +1,8 @@
 package _GUI;
 
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
@@ -15,6 +12,12 @@ import javax.swing.JPanel;
  * This is the main panel, it displays a menu where you can select various secondary panels
  */
 public class MainPanel extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/*
 	 * parent: a reference to the parent frame
 	 * playButton, highScoresButton, tutorialButton: the dynamic part of the panel
@@ -23,14 +26,11 @@ public class MainPanel extends JPanel{
 	JButton playButton;
 	JButton highScoreButton;
 	JButton tutorialButton;
-<<<<<<< HEAD
+	
 	/*
 	 * Constructor which create the panel using a GridBagLayout
 	 */
-=======
-	Insets insets;
-	
->>>>>>> 915b563bf76e15c06100b38938fdd0c35d6b0ffa
+
 	public MainPanel(JFrame parent) {
 		
 		super();
