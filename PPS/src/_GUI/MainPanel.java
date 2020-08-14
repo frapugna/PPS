@@ -13,13 +13,15 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel{
 	/*
 	 * parent: a reference to the parent frame
-	 * playButton, highScoresButton, tutorialButton,
+	 * playButton, highScoresButton, tutorialButton: the dynamic part of the panel
 	 */
 	JFrame parent;
 	JButton playButton;
 	JButton highScoreButton;
 	JButton tutorialButton;
-	
+	/*
+	 * Constructor which create the panel using a GridBagLayout
+	 */
 	public MainPanel(JFrame parent) {
 		
 		super();
