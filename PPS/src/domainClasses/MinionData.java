@@ -1,5 +1,5 @@
 package domainClasses;
 
-public class D {
+public class MinionData {
 
 }
