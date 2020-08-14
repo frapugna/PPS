@@ -1,7 +1,11 @@
 package _GUI;
 
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
@@ -19,14 +23,20 @@ public class MainPanel extends JPanel{
 	JButton playButton;
 	JButton highScoreButton;
 	JButton tutorialButton;
+<<<<<<< HEAD
 	/*
 	 * Constructor which create the panel using a GridBagLayout
 	 */
+=======
+	Insets insets;
+	
+>>>>>>> 915b563bf76e15c06100b38938fdd0c35d6b0ffa
 	public MainPanel(JFrame parent) {
 		
 		super();
 		
 		this.parent = parent;
+
 		this.playButton = new JButton("New Game");
 		this.highScoreButton = new JButton("High Score");
 		this.tutorialButton = new JButton("Tutorial");
@@ -50,6 +60,8 @@ public class MainPanel extends JPanel{
 		gbc.insets = new Insets(0,0,60,0);
 		gbc.anchor = GridBagConstraints.SOUTH;
 		this.add(this.tutorialButton, gbc);
+		
+		
 		
 	}
 	
