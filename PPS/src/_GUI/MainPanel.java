@@ -61,8 +61,6 @@ public class MainPanel extends JPanel{
 		gbc.anchor = GridBagConstraints.SOUTH;
 		this.add(this.tutorialButton, gbc);
 		
-		
-		
 	}
 	
 }

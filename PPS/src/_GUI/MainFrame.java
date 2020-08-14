@@ -15,24 +15,40 @@ public class MainFrame extends JFrame implements ActionListener {
 	public JFrame mainFrame;
 	public String windowTitle;
 	int frameWidth, frameHeight;
+	public MainPanel mainPanel;
+	public GamePanel gamePanel;
 	
 	public MainFrame() {
 		
 		windowTitle = "Temporary title";
 		frameWidth = 1000;
 		frameHeight = 500;
+		
 		mainFrame = new JFrame(windowTitle);
 		
-		mainFrame.setSize(this.frameWidth, this.frameHeight);
+ 		mainFrame.setSize(this.frameWidth, this.frameHeight);
+		
+		mainPanel = new MainPanel(mainFrame);
+		
+		mainPanel.playButton.addActionListener(this);
+		
+		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mainFrame.setLocationRelativeTo(null);
-		mainFrame.add(new MainPanel(mainFrame));
+		mainFrame.setContentPane(mainPanel);
 		mainFrame.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == mainPanel.playButton) {
+			gamePanel = new GamePanel(this);
+			mainFrame.getContentPane().removeAll();
+			mainFrame.getContentPane().add(gamePanel);
+			mainFrame.repaint();
+		}
+		
 		
 	}
 
