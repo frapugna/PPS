@@ -4,9 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-
+import javax.swing.JPanel;
+/*
+ * First and only frame of the apps
+ * Starts with the MainPanel and switches between panels
+ * Also listens to MainPanel's buttons and returntomenu buttons of the other panels
+ * (Other buttons are handled by their parent component)
+ */
 public class MainFrame extends JFrame implements ActionListener {
-	
 	/**
 	 * 
 	 */
@@ -47,35 +52,23 @@ public class MainFrame extends JFrame implements ActionListener {
 			if(e.getSource() == mainPanel.playButton) {
 				
 				gamePanel = new GamePanel(this);
-				mainFrame.getContentPane().removeAll();
-				mainFrame.setContentPane(gamePanel);
-				mainFrame.repaint();
-				mainFrame.setVisible(true);
-				
+				changePaneTo(gamePanel);
 				gamePanel.returnToMenu.addActionListener(this);
 				
 			}
 			else if(e.getSource() == mainPanel.highScoreButton) {
 				
 				highScorePanel = new HighScorePanel(this);
-				mainFrame.getContentPane().removeAll();
-				mainFrame.setContentPane(highScorePanel);
-				mainFrame.repaint();
-				mainFrame.setVisible(true);
-				
+				changePaneTo(highScorePanel);
 				highScorePanel.returnToMenu.addActionListener(this);
 				
 			}
 			else if(e.getSource() == mainPanel.tutorialButton) {
-				
+			
 				tutorialPanel = new TutorialPanel(this);
-				mainFrame.getContentPane().removeAll();
-				mainFrame.setContentPane(tutorialPanel);
-				mainFrame.repaint();
-				mainFrame.setVisible(true);
-				
+				changePaneTo(tutorialPanel);
 				tutorialPanel.returnToMenu.addActionListener(this);
-				
+			
 			}
 			
 		}
@@ -115,6 +108,18 @@ public class MainFrame extends JFrame implements ActionListener {
 		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setContentPane(mainPanel);
+		mainFrame.setVisible(true);
+		
+	}
+	
+	/*
+	 * Method to set any custom panel as the contentPane* 
+	 */
+	public <T extends JPanel> void changePaneTo(T panel) {
+		
+		mainFrame.getContentPane().removeAll();
+		mainFrame.setContentPane(panel);
+		mainFrame.repaint();
 		mainFrame.setVisible(true);
 		
 	}

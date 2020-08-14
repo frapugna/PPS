@@ -3,6 +3,7 @@ package domainClasses;
  * It extends the parent class adding a new attribute, it also provides methods to interact with that
  */
 public class PotionData extends AbstractCardData{
+	
 	int hpHealed;
 	
 	public PotionData(String imagePath, String name, int hpHealed) {
