@@ -11,9 +11,14 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/*
+ * This is the main panel, it displays a menu where you can select various secondary panels
+ */
 public class MainPanel extends JPanel{
-	
+	/*
+	 * parent: a reference to the parent frame
+	 * playButton, highScoresButton, tutorialButton,
+	 */
 	JFrame parent;
 	JButton playButton;
 	JButton highScoreButton;
