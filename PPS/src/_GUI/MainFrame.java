@@ -34,6 +34,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		
 	}
 
+	/*
+	 * the ActionPerformed method works by discerning which panel is the current ContentPane
+	 * it checks which buttons are being pressed and changes panels accordingly
+	 * it also adds actionListeners to buttons that aren't in the mainPanel
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -91,7 +96,13 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 		
 	}
-		
+	
+	/*
+	 * Method necessary to initialize the main panel because
+	 * Swing is a little bitch and doesn't know how to save
+	 * a panel state (or it is me that doesn't know how to do it)
+	 * (nonetheless it works now)
+	 */
 	public void initMainPanel() {
 		
 		mainPanel = new MainPanel(mainFrame);
