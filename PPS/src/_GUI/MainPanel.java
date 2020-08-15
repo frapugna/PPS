@@ -46,10 +46,11 @@ public class MainPanel extends JPanel{
 		
 		gbc.insets = new Insets(60, 0, 0, 0);
 		gbc.weighty = parent.getHeight();
+		gbc.weighty = parent.getWidth();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 600;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.ipadx = 750;	//It is the number of pixels added to the standard width of the JButton
+		gbc.ipady = 30;		//It is the number of pixels added to the standard height of the JButton
 		gbc.anchor = GridBagConstraints.NORTH;
 		this.add(this.playButton, gbc);
 		
