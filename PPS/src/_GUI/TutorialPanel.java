@@ -1,14 +1,9 @@
 package _GUI;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,6 +32,12 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	JLabel currentSlide;
 	int currentSlideIndex;
 	
+	/*
+	 * This panel works by using a grid 3x3 and it adds empty
+	 * JPanels where it needs an empty space(UGLY)
+	 * NEEDS restyle of buttons (with GridBagLayout ;))and resizing of pictures
+	 * After that should be complete
+	 */
 	public TutorialPanel(JFrame parent){
 		
 		super(new GridLayout(3, 3));
@@ -46,20 +47,20 @@ public class TutorialPanel extends JPanel implements ActionListener{
 		this.tutorialSlideShow = new ImageIcon[slideTotalNumber];
 		this.initSlideShow();
 		
-		this.add(new JPanel()); this.add(new JPanel());
+		this.add(new JPanel()); this.add(new JPanel());//(0,0);(0,1)
 		this.returnToMenu = new JButton("Menu");
 		this.add(returnToMenu);
 		
-		this.add(new JPanel());
+		this.add(new JPanel());//(1,0)
 		currentSlideIndex = 0;
 		this.currentSlide = new JLabel(tutorialSlideShow[currentSlideIndex]);
 		this.add(currentSlide);
 		
-		this.add(new JPanel());
+		this.add(new JPanel());//(1,2)
 		this.previousSlide = new JButton("<");
 		this.add(previousSlide);
 		
-		this.add(new JPanel());
+		this.add(new JPanel());//(2,1)
 		this.nextSlide = new JButton(">");
 		this.add(nextSlide);
 		
@@ -68,6 +69,9 @@ public class TutorialPanel extends JPanel implements ActionListener{
 		
 	} 
 	
+	/*
+	 *Method to pull all needed resources from folder 
+	 */
 	public void initSlideShow() {
 			
 			tutorialSlideShow[0] = new ImageIcon("resources/firstSlide.png");
@@ -75,6 +79,10 @@ public class TutorialPanel extends JPanel implements ActionListener{
 		
 	}
 
+	/*
+	 * ActionListeners for the flow buttons
+	 * Works by selecting the current image on tutorialSlideShow
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
