@@ -3,14 +3,12 @@ package domainClasses;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 /*
- * This class is structered as a a tree whoose nodes are Lists of AbstractCardData
+ * This class is structured as a a tree whose nodes are Lists of AbstractCardData
  */
-
 public class CardDeck {
 	/*
-	 * Thoose Lists are the leeves of the tree
+	 * Those Lists are the leaves of the tree
 	 */
 	List<? super AbstractCardData> minionList;
 	List<? super AbstractCardData> potionList;
@@ -26,7 +24,7 @@ public class CardDeck {
 	 */
 	HashMap<String, List<? super AbstractCardData>> evilCategoriesMap;
 
-	int alignements;
+	int alignments;
 	
 	public CardDeck() {
 		super();
@@ -73,11 +71,11 @@ public class CardDeck {
 		evilCategoriesMap.put("Minion", minionList);
 		evilCategoriesMap.put("Trap", trapList);
 	
-		alignements = 2;
+		alignments = 2;
 	}
 
-	public int getAlignements() {
-		return alignements;
+	public int getAlignments() {
+		return alignments;
 	}
 
 	public HashMap<String, List<? super AbstractCardData>> getGoodCategoriesMap() {

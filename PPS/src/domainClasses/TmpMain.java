@@ -16,7 +16,7 @@ public class TmpMain {
 			if(c instanceof MinionData) {	//use the "instanceof"(getClass doesn't work) to check before downcasts
 				System.out.println("Minion found, exiting execution");
 				MinionData m = (MinionData) c;
-				System.out.println("Minion data is going to be displayed:"+"hp = "+m.hp+"Name = "+m.name);
+				System.out.println("Minion data is going to be displayed:"+"hp = "+m.hp+" Name = "+m.name);
 				break;
 			}
 			

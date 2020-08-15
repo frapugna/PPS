@@ -1,7 +1,7 @@
 package domainClasses;
 /*
  * This abstract class add the hp attribute to the parent class, it is a feature shared by the 
- * main character and the villains who are CharacterData's sons.
+ * main character and the villains who are CharacterData's subclasses.
  * It also implements an additional gethp() method
  * 
  */
