@@ -1,5 +1,6 @@
 package _GUI;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +20,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	
 	public JFrame mainFrame;
 	public String windowTitle;
-	int frameWidth, frameHeight;
+	final int FRAME_WIDTH = 1000, FRAME_HEIGHT = 500;
 	public MainPanel mainPanel;
 	public GamePanel gamePanel;
 	public HighScorePanel highScorePanel;
@@ -28,12 +29,9 @@ public class MainFrame extends JFrame implements ActionListener {
 	public MainFrame() {
 		
 		windowTitle = "Excore";
-		frameWidth = 1000;
-		frameHeight = 500;
-		
 		mainFrame = new JFrame(windowTitle);
 		
- 		mainFrame.setSize(this.frameWidth, this.frameHeight);
+ 		mainFrame.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
 		
  		initMainPanel();
 		
@@ -98,12 +96,14 @@ public class MainFrame extends JFrame implements ActionListener {
 	 */
 	public void initMainPanel() {
 		
+		
 		mainPanel = new MainPanel(mainFrame);
 		
 		mainPanel.playButton.addActionListener(this);
 		mainPanel.highScoreButton.addActionListener(this);
 		mainPanel.tutorialButton.addActionListener(this);
 		
+		mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mainFrame.setLocationRelativeTo(null);
@@ -119,6 +119,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		
 		mainFrame.getContentPane().removeAll();
 		mainFrame.setContentPane(panel);
+		
+		if(panel instanceof GamePanel)
+			mainFrame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		
+		mainFrame.setLocationRelativeTo(null);
 		mainFrame.repaint();
 		mainFrame.setVisible(true);
 		
