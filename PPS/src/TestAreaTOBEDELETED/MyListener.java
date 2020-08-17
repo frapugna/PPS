@@ -56,12 +56,12 @@ public class MyListener implements ActionListener{
 		
 		actualX = currX * 100;
 		actualY = currY * 100;
-		xSpeed = -1;
+		xSpeed = -2;
 		ySpeed = 0;
 		
 		actualXOtherButton = (currX - 1) * 100;
 		actualYOtherButton = currY * 100;
-		xSpeedOtherButton = 1;
+		xSpeedOtherButton = 2;
 		ySpeedOtherButton = 0;
 		
 		timer = new Timer(1000 / 20, new ActionListener() {
