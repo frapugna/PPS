@@ -1,6 +1,6 @@
 package _GUI;
 
-import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,13 +23,20 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	JFrame parent;
 	
 	JButton returnToMenu;
-	JButton nextSlide;
+	final Rectangle MENU_RECT = new Rectangle(870, 20, 80, 50);
+	
+	JButton nextSlide; 
+	final Rectangle NEXT_RECT = new Rectangle(870, 350, 80, 50);
+	
 	JButton previousSlide;
+	final Rectangle PREVIOUS_RECT = new Rectangle(30, 350, 80, 50);
 	
 	ImageIcon[] tutorialSlideShow;
 	int slideTotalNumber;
 	
 	JLabel currentSlide;
+	final Rectangle SLIDE_RECT = new Rectangle(150, 50, 650, 350);
+	
 	int currentSlideIndex;
 	
 	/*
@@ -40,28 +47,32 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	 */
 	public TutorialPanel(JFrame parent){
 		
-		super(new GridLayout(3, 3));
+		super();
 		this.parent = parent;
+		this.setLayout(null);
 		
 		slideTotalNumber = 2;
 		this.tutorialSlideShow = new ImageIcon[slideTotalNumber];
 		this.initSlideShow();
 		
-		this.add(new JPanel()); this.add(new JPanel());//(0,0);(0,1)
 		this.returnToMenu = new JButton("Menu");
+		this.returnToMenu.setBounds(MENU_RECT);
 		this.add(returnToMenu);
 		
-		this.add(new JPanel());//(1,0)
+		
 		currentSlideIndex = 0;
 		this.currentSlide = new JLabel(tutorialSlideShow[currentSlideIndex]);
+		this.currentSlide.setBounds(SLIDE_RECT);
 		this.add(currentSlide);
 		
-		this.add(new JPanel());//(1,2)
+		
 		this.previousSlide = new JButton("<");
+		this.previousSlide.setBounds(PREVIOUS_RECT);
 		this.add(previousSlide);
 		
-		this.add(new JPanel());//(2,1)
+
 		this.nextSlide = new JButton(">");
+		this.nextSlide.setBounds(NEXT_RECT);
 		this.add(nextSlide);
 		
 		nextSlide.addActionListener(this);
