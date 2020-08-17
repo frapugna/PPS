@@ -2,6 +2,7 @@ package _GUI;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,7 +19,11 @@ public class GamePanel extends JPanel{
 	JFrame parent;
 	JButton returnToMenu;
 	CardGrid cardGrid;
-	final Rectangle MENU_RECT = new Rectangle(1300, 30, 200, 100);
+	
+	final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	final int SCREEN_HEIGTH = Toolkit.getDefaultToolkit().getScreenSize().height;
+	
+	final Rectangle MENU_RECT = new Rectangle(SCREEN_WIDTH - 250, 30, 200, 100);
 	final Rectangle CARD_GRID_RECT = new Rectangle(500, 80, 450, 600);
 	
 	public GamePanel(JFrame parent) {
