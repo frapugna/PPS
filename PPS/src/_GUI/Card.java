@@ -23,6 +23,10 @@ public abstract class Card extends JPanel{
 	ImageIcon image;
 	AbstractCardData cardType;
 	
+	/**
+	 * @param xCoor
+	 * @param yCoor
+	 */
 	public Card(int xCoor, int yCoor) {
 		super();
 		this.setLayout(null);
@@ -33,7 +37,7 @@ public abstract class Card extends JPanel{
 		cardType = d.drawCard();
 		
 		this.setSize(WIDTH, HEIGHT);
-		//this.setBackground(Color.ORANGE);
+		this.setBackground(Color.ORANGE);
 		
 		image = new ImageIcon("dog.jpg");
 		JLabel l = new JLabel(image);
@@ -42,4 +46,29 @@ public abstract class Card extends JPanel{
 	
 		l.setBounds(5, 5, 140, 140);
 	}
+
+	public int getxCoor() {
+		return xCoor;
+	}
+
+	public void setxCoor(int xCoor) {
+		this.xCoor = xCoor;
+	}
+
+	public int getyCoor() {
+		return yCoor;
+	}
+
+	public void setyCoor(int yCoor) {
+		this.yCoor = yCoor;
+	}
+
+	public AbstractCardData getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(AbstractCardData cardType) {
+		this.cardType = cardType;
+	}
+	
 }

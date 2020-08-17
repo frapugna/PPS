@@ -56,4 +56,21 @@ public class CharacterCard extends Card{
 		}
 		
 	}
+
+	public int getLeftValue() {
+		return leftValue;
+	}
+
+	public void setLeftValue(int leftValue) {
+		this.leftValue = leftValue;
+	}
+
+	public JLabel getStatus() {
+		return status;
+	}
+
+	public void setStatus(JLabel status) {
+		this.status = status;
+	}
+	
 }
