@@ -1,5 +1,6 @@
 package _GUI;
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -10,23 +11,26 @@ import javax.swing.JPanel;
 
 import domainClasses.AbstractCardData;
 import domainClasses.Dealer;
-
+/*
+ * This class give a partial implementation of the graphic representation 
+ * of a card
+ */
 public abstract class Card extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
 	static final int WIDTH = 150;
 	static final int HEIGHT = 200;
 	
-	
+	/*
+	 * xCoor and yCoor are the position of the card into 
+	 * the matrix displayed
+	 */
 	int xCoor;
 	int yCoor;
 	
 	ImageIcon image;
 	AbstractCardData cardType;
 	
-	/**
-	 * @param xCoor
-	 * @param yCoor
-	 */
 	public Card(int xCoor, int yCoor) {
 		super();
 		this.setLayout(null);

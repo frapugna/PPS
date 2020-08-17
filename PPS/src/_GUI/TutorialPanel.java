@@ -15,9 +15,7 @@ import javax.swing.JPanel;
  * Also there is a returnToMenu Button
  */
 public class TutorialPanel extends JPanel implements ActionListener{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	JFrame parent;

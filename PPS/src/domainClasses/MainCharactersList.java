@@ -22,7 +22,4 @@ public class MainCharactersList {
 	public void setChoiceMenu(List<MainCharacterData> choiceMenu) {
 		this.choiceMenu = choiceMenu;
 	}
-	
-	
-	
 }

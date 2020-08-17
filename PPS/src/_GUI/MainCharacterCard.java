@@ -11,9 +11,7 @@ import domainClasses.AbstractCardData;
 import domainClasses.MainCharacterData;
 
 public class MainCharacterCard extends JPanel{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	static final int WIDTH = 150;
 	static final int HEIGHT = 200;
@@ -52,12 +50,12 @@ public class MainCharacterCard extends JPanel{
 		l.setBounds(5, 5, 140, 140);
 		
 		hp = cardType.gethp();
-		hpLabel = new JLabel(String.format("HP: "+hp));
+		hpLabel = new JLabel(String.format("❤️: "+hp));
 		this.add(hpLabel);
 		hpLabel.setBounds(HP_RECT);
 		
 		weaponDurability = cardType.getWeaponDurability();
-		durabilityLabel = new JLabel(String.format("Durability: "+weaponDurability));
+		durabilityLabel = new JLabel(String.format("⚔️: "+weaponDurability));
 		this.add(durabilityLabel);
 		durabilityLabel.setBounds(DURABILITY_RECT);
 		
