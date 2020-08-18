@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -35,7 +36,10 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	int xMain;
 	int yMain;
-
+	/*
+	 * it represents the actual score
+	 */
+	int score;
 
 	public CardGrid(GamePanel parent, MainCharacterCard mainCharacter) {
 
@@ -43,7 +47,10 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		this.parent = parent;
 		this.setLayout(null);
 		
+		score = 0;
+		
 		this.mainCharacter = mainCharacter;
+		
 		initCardMatrix();
 	}
 
@@ -77,18 +84,11 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	private void initMainCharacterCard() {
 
-		//Object[] options = {"Berserker","Warrior","Archer"};
-		//int answer = JOptionPane.showOptionDialog(this, "Choose your class!", "Character selection",JOptionPane.YES_NO_CANCEL_OPTION , JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-		//MainCharactersList list = new MainCharactersList();
-		//MainCharacterData data = list.getChoiceMenu().get(answer);
+	
 		xMain = 1;
 		yMain = 1;
 
-		//mainCharacter = new MainCharacterCard(xMain, yMain, data);
-
 		isAlive = true;
-
 
 		this.add(mainCharacter);
 		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
@@ -247,9 +247,112 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 						}
 		return out;
 	}
+	/*
+	 * This method moves the main character and the other cards
+	 */
 	private void moveCard(int x, int y) {
+		if(isLeft(x,y))
+			moveLeft(x,y);
+		else
+			if(isRight(x,y))
+				moveRight(x,y);
+			else
+				if(isUp(x, y))
+					moveUp(x,y);
+				else
+					if(isDown(x,y))
+						moveDown(x,y);
+	}
+	private void moveDown(int x, int y) {
+		this.remove(cardMatrix[y][x]);
+		xMain = x;
+		yMain = y;
+		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		--y;
+		while((y - 1) >= 0) {
+			cardMatrix[y][x] = cardMatrix[y-1][x];
+			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+			cardMatrix[y][x].setxCoor(x);
+			cardMatrix[y][x].setyCoor(y);
+			--y;
+		}
+		cardMatrix[y][x] = new CharacterCard(y, x);
+		this.add(cardMatrix[y][x]);
+		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+		cardMatrix[y][x].addMouseListener(this);
+		cardMatrix[y][x].addMouseMotionListener(this);
+		
+		updateCardMatrixBorders();
+	}
+	private void moveUp(int x, int y) {
+		this.remove(cardMatrix[y][x]);
+		xMain = x;
+		yMain = y;
+		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		++y;
+		while((y + 1) <= 2) {
+			cardMatrix[y][x] = cardMatrix[y+1][x];
+			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+			cardMatrix[y][x].setxCoor(x);
+			cardMatrix[y][x].setyCoor(y);
+			++y;
+		}
+		cardMatrix[y][x] = new CharacterCard(y, x);
+		this.add(cardMatrix[y][x]);
+		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+		cardMatrix[y][x].addMouseListener(this);
+		cardMatrix[y][x].addMouseMotionListener(this);
+		
+		updateCardMatrixBorders();
+	}
+	private void moveLeft(int x, int y) {
+		this.remove(cardMatrix[y][x]);
+		xMain = x;
+		yMain = y;
+		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		++x;
+		while((x + 1) <= 2) {
+			cardMatrix[y][x] = cardMatrix[y][x+1];
+			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+			cardMatrix[y][x].setxCoor(x);
+			cardMatrix[y][x].setyCoor(y);
+			++x;
+		}
+		cardMatrix[y][x] = new CharacterCard(y, x);
+		this.add(cardMatrix[y][x]);
+		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+		cardMatrix[y][x].addMouseListener(this);
+		cardMatrix[y][x].addMouseMotionListener(this);
+		
+		updateCardMatrixBorders();
+	}
+	
+	private void moveRight(int x, int y) {
+		this.remove(cardMatrix[y][x]);
+		xMain = x;
+		yMain = y;
+		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		--x;
+		while((x - 1) >= 0) {
+			cardMatrix[y][x] = cardMatrix[y][x-1];
+			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+			cardMatrix[y][x].setxCoor(x);
+			cardMatrix[y][x].setyCoor(y);
+			--x;
+		}
+		cardMatrix[y][x] = new CharacterCard(y, x);
+		this.add(cardMatrix[y][x]);
+		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
+		cardMatrix[y][x].addMouseListener(this);
+		cardMatrix[y][x].addMouseMotionListener(this);
+		
+		updateCardMatrixBorders();
 		
 	}
+	
+	/*
+	 * this method is called after every interaction, it stops the game if your hp are <= 0
+	 */
 	private void gameOver() {
 		if(isAlive == false) {
 			JOptionPane.showMessageDialog(this, "GAME OVER");
@@ -287,8 +390,11 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					if(isClickable(x, y)) {
 						boolean isMoveEnabled = moveSet(x,y);
 						gameOver();
-						if(isMoveEnabled)
+						if(isMoveEnabled) {
+							++score;
+							parent.getScoreLabel().setText("Score: "+score);
 							moveCard(x,y);
+						}
 					}
 
 			}

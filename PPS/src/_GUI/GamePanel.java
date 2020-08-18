@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,12 +22,14 @@ public class GamePanel extends JPanel implements ActionListener{
 	MainFrame parent;
 	JButton returnToMenu;
 	CardGrid cardGrid;
-	
+	JLabel scoreLabel;
+
 	final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
 	final int SCREEN_HEIGTH = Toolkit.getDefaultToolkit().getScreenSize().height;
 	
 	final Rectangle MENU_RECT = new Rectangle(490, 500, 200, 100);
 	final Rectangle CARD_GRID_RECT = new Rectangle(10, 10, 450, 600);
+	final Rectangle SCORE_RECT = new Rectangle(490, 10,200,100);
 	
 	public GamePanel(MainFrame parent, MainCharacterCard mainCharacter) {
 		
@@ -40,6 +43,9 @@ public class GamePanel extends JPanel implements ActionListener{
 		add(returnToMenu);
 		returnToMenu.addActionListener(this);
 		
+		scoreLabel = new JLabel("Score: "+0);
+		add(scoreLabel);
+		scoreLabel.setBounds(SCORE_RECT);
 		
 		cardGrid = new CardGrid(this, mainCharacter);
 
@@ -48,7 +54,14 @@ public class GamePanel extends JPanel implements ActionListener{
 		add(cardGrid);
 		
 	}
+	
+	public JLabel getScoreLabel() {
+		return scoreLabel;
+	}
 
+	public void setScoreLabel(JLabel scoreLabel) {
+		this.scoreLabel = scoreLabel;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

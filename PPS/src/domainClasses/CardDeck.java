@@ -49,7 +49,7 @@ public class CardDeck {
 		
 		trapList = new ArrayList<AbstractCardData>();
 		//add card data here
-		trapList.add(new TrapData("resources/cardIcons/mimicResized.png", "Mimic", 15));	
+		trapList.add(new TrapData("resources/cardIcons/mimicResized.png", "Mimic", 6));	
 		
 	
 		
