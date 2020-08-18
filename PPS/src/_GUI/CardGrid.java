@@ -53,6 +53,7 @@ public class CardGrid extends JPanel implements MouseListener{
 		setBorder();
 
 	}
+	
 	/*
 	 * This method initially show a option dialog asking the player to choose his class,
 	 * then the Main Character is initialized as a normal card, but it is not stored into the cardMatrix(cardMatrix is a CardCharacter matrix

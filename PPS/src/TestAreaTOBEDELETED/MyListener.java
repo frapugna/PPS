@@ -66,7 +66,7 @@ public class MyListener implements ActionListener{
 		xSpeedOtherButton = xSpeed * -1;
 		ySpeedOtherButton = 0;
 		
-		/*timer = new Timer(1000 / 20, new ActionListener() {
+		timer = new Timer(1000 / 20, new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				 if(actualX > (currX - 1) * 100) {
 					 
@@ -87,9 +87,9 @@ public class MyListener implements ActionListener{
 		});
 		
 		timer.setRepeats(true);
-		timer.start();*/
+		timer.start();
 		
-		while(actualX > (currX - 1) * 100) {
+		/*while(actualX > (currX - 1) * 100) {
 			
 			 actualX += xSpeed;
 			 actualY += ySpeed;
@@ -113,9 +113,8 @@ public class MyListener implements ActionListener{
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			
-		}
 		
 	}
 
