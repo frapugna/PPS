@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /*
  * First and only frame of the apps
@@ -22,6 +23,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	final int FRAME_WIDTH = 1000, FRAME_HEIGHT = 500;
 	public MainPanel mainPanel;
 	public GamePanel gamePanel;
+	public CharacterSelectionPanel characterSelectionPanel;
 	public HighScorePanel highScorePanel;
 	public TutorialPanel tutorialPanel;
 
@@ -48,9 +50,9 @@ public class MainFrame extends JFrame implements ActionListener {
 				
 			if(e.getSource() == mainPanel.playButton) {
 				
-				gamePanel = new GamePanel(this);
-				changePaneTo(gamePanel);
-				gamePanel.returnToMenu.addActionListener(this);
+				characterSelectionPanel = new CharacterSelectionPanel(this);
+				changePaneTo(characterSelectionPanel);
+				//!!!!gamePanel.returnToMenu.addActionListener(this);
 				
 			}
 			else if(e.getSource() == mainPanel.highScoreButton) {
@@ -68,11 +70,6 @@ public class MainFrame extends JFrame implements ActionListener {
 			
 			}
 			
-		}
-		
-		else if(mainFrame.getContentPane() == gamePanel) {
-			if(e.getSource() == gamePanel.returnToMenu) 
-				initMainPanel();
 		}
 		
 		else if(mainFrame.getContentPane() == highScorePanel) {
@@ -121,6 +118,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		
 		if(panel instanceof GamePanel)
 			mainFrame.setSize(720, 660);
+		if(panel instanceof CharacterSelectionPanel)
+			mainFrame.setSize(530, 280);
+		
 		
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.repaint();

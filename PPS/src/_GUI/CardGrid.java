@@ -36,11 +36,14 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	int xMain;
 	int yMain;
 
-	public CardGrid(JPanel parent) {
+
+	public CardGrid(MainCharacterCard mainCharacter) {
+
 		super();
 		this.parent = parent;
 		this.setLayout(null);
-
+		
+		this.mainCharacter = mainCharacter;
 		initCardMatrix();
 	}
 
@@ -74,15 +77,18 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	private void initMainCharacterCard() {
 
-		Object[] options = {"Berserker","Warrior","Archer"};
-		int answer = JOptionPane.showOptionDialog(this, "Choose your class!", "Character selection",JOptionPane.YES_NO_CANCEL_OPTION , JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		//Object[] options = {"Berserker","Warrior","Archer"};
+		//int answer = JOptionPane.showOptionDialog(this, "Choose your class!", "Character selection",JOptionPane.YES_NO_CANCEL_OPTION , JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-		MainCharactersList list = new MainCharactersList();
-		MainCharacterData data = list.getChoiceMenu().get(answer);
+		//MainCharactersList list = new MainCharactersList();
+		//MainCharacterData data = list.getChoiceMenu().get(answer);
 		xMain = 1;
 		yMain = 1;
-		mainCharacter = new MainCharacterCard(xMain, yMain, data);
+
+		//mainCharacter = new MainCharacterCard(xMain, yMain, data);
+
 		isAlive = true;
+
 
 		this.add(mainCharacter);
 		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
