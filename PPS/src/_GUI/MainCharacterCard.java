@@ -15,6 +15,7 @@ public class MainCharacterCard extends JPanel{
 	private static final long serialVersionUID = 1L;
 	static final int WIDTH = 150;
 	static final int HEIGHT = 200;
+	static final int MAX_HP = 20;
 	
 	final Rectangle HP_RECT = new Rectangle(35, 160, 40, 30);
 	final Rectangle HP_ICON_RECT = new Rectangle(5, 160, 30, 30);

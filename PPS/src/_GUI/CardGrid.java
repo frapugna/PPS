@@ -11,6 +11,10 @@ import javax.swing.JPanel;
 
 import domainClasses.MainCharacterData;
 import domainClasses.MainCharactersList;
+import domainClasses.MinionData;
+import domainClasses.PotionData;
+import domainClasses.RepairPotionData;
+import domainClasses.TrapData;
 import domainClasses.WeaponData;
 
 public class CardGrid extends JPanel implements MouseListener, MouseMotionListener{
@@ -19,6 +23,10 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	CharacterCard[][] cardMatrix;
 	MainCharacterCard mainCharacter;
+	/*
+	 * If true you keep playing
+	 */
+	boolean isAlive;
 	/*
 	 * xMain: it is the position of the main character on the x axis
 	 * yMain: it is the position of the main character on the y axis
@@ -55,7 +63,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		}
 		setClickableBorder();
 	}
-	
+
 	/*
 	 * This method initially show a option dialog asking the player to choose his class,
 	 * then the Main Character is initialized as a normal card, but it is not stored into the cardMatrix(cardMatrix is a CardCharacter matrix
@@ -71,6 +79,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		xMain = 1;
 		yMain = 1;
 		mainCharacter = new MainCharacterCard(xMain, yMain, data);
+		isAlive = true;
 
 		this.add(mainCharacter);
 		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
@@ -146,17 +155,88 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		else
 			return false;
 	}
+
+
 	private boolean moveSet(int x, int y) {
 		boolean out = true;
 		if(cardMatrix[y][x].getCardType() instanceof WeaponData) {
 			mainCharacter.setWeaponDurability(cardMatrix[y][x].getLeftValue());
 			mainCharacter.getDurabilityLabel().setText(":"+mainCharacter.getWeaponDurability());
 		}
-			
+		else
+			if(cardMatrix[y][x].getCardType() instanceof PotionData) {
+				int tmpHp = mainCharacter.getHp();
+				tmpHp += cardMatrix[y][x].getLeftValue();
+
+				if(tmpHp > MainCharacterCard.MAX_HP)
+					tmpHp = MainCharacterCard.MAX_HP;
+
+				mainCharacter.setHp(tmpHp);
+				mainCharacter.getHpLabel().setText(":"+mainCharacter.getHp());
+			}
+			else
+				if(cardMatrix[y][x].getCardType() instanceof RepairPotionData) {
+
+					int tmpDurability = mainCharacter.getWeaponDurability();
+					if(tmpDurability > 0) {
+						tmpDurability += cardMatrix[y][x].getLeftValue();
+
+						mainCharacter.setWeaponDurability(tmpDurability);
+						mainCharacter.getDurabilityLabel().setText(":"+tmpDurability);
+					}
+				}
+				else
+					if(cardMatrix[y][x].getCardType() instanceof TrapData) {
+						int tmpHp = mainCharacter.getHp();
+						int damage =  cardMatrix[y][x].getLeftValue();
+						tmpHp -= damage;
+
+						if(tmpHp <= 0) {
+							isAlive = false;
+						}
+
+						mainCharacter.setHp(tmpHp);
+						mainCharacter.getHpLabel().setText(":"+mainCharacter.getHp());
+					}
+					else
+						if(cardMatrix[y][x].getCardType() instanceof MinionData) {
+							int tmpDurability = mainCharacter.getWeaponDurability();
+							int tmpMinionHp = cardMatrix[y][x].getLeftValue();
+							int tmpHp = mainCharacter.getHp();
+
+							if(tmpDurability == 0) {
+								tmpHp -= tmpMinionHp;
+								if(tmpHp < 0)
+									isAlive = false;
+								mainCharacter.setHp(tmpHp);
+								mainCharacter.getHpLabel().setText(":"+mainCharacter.getHp());
+
+								cardMatrix[y][x].setLeftValue(0);
+								cardMatrix[y][x].getStatus().setText(":"+0);
+							}
+							else
+								if(tmpMinionHp > tmpDurability) {
+									out = false;
+									tmpMinionHp -= tmpDurability;
+
+									cardMatrix[y][x].setLeftValue(tmpMinionHp);
+									cardMatrix[y][x].getStatus().setText(":"+tmpMinionHp);
+
+									mainCharacter.setWeaponDurability(0);
+									mainCharacter.getDurabilityLabel().setText(":"+mainCharacter.getWeaponDurability());
+								}
+								else
+									if(tmpDurability >= tmpMinionHp) {
+										tmpDurability -= tmpMinionHp;
+										mainCharacter.setWeaponDurability(tmpDurability);
+										mainCharacter.getDurabilityLabel().setText(":"+mainCharacter.getWeaponDurability());
+									}
+
+						}
 		return out;
 	}
 	private void moveCard(int x, int y) {
-		
+
 	}
 
 	@Override
@@ -191,7 +271,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 						if(isMoveEnabled)
 							moveCard(x,y);
 					}
-						
+
 			}
 		}
 	}
