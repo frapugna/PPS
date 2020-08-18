@@ -121,7 +121,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		mainFrame.setContentPane(panel);
 		
 		if(panel instanceof GamePanel)
-			mainFrame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+			mainFrame.setSize(720, 660);
 		
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.repaint();
