@@ -21,7 +21,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	private static final long serialVersionUID = 1L;
 
-	JPanel parent;
+	GamePanel parent;
 	
 	CharacterCard[][] cardMatrix;
 	MainCharacterCard mainCharacter;
@@ -37,7 +37,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	int yMain;
 
 
-	public CardGrid(MainCharacterCard mainCharacter) {
+	public CardGrid(GamePanel parent, MainCharacterCard mainCharacter) {
 
 		super();
 		this.parent = parent;
@@ -253,7 +253,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	private void gameOver() {
 		if(isAlive == false) {
 			JOptionPane.showMessageDialog(this, "GAME OVER");
-			
+			parent.parent.initMainPanel();
 		}
 	}
 

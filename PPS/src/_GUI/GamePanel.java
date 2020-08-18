@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		returnToMenu.addActionListener(this);
 		
 		
-		cardGrid = new CardGrid(mainCharacter);
+		cardGrid = new CardGrid(this, mainCharacter);
 
 		cardGrid.setBounds(CARD_GRID_RECT);
 		cardGrid.setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
