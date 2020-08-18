@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import domainClasses.MainCharacterData;
 import domainClasses.MainCharactersList;
+import domainClasses.WeaponData;
 
 public class CardGrid extends JPanel implements MouseListener, MouseMotionListener{
 
@@ -145,6 +146,18 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		else
 			return false;
 	}
+	private boolean moveSet(int x, int y) {
+		boolean out = true;
+		if(cardMatrix[y][x].getCardType() instanceof WeaponData) {
+			mainCharacter.setWeaponDurability(cardMatrix[y][x].getLeftValue());
+			mainCharacter.getDurabilityLabel().setText(":"+mainCharacter.getWeaponDurability());
+		}
+			
+		return out;
+	}
+	private void moveCard(int x, int y) {
+		
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -168,7 +181,19 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		updateCardMatrixBorders();
-
+		for(int y = 0; y < 3; ++y) {
+			for(int x = 0; x < 3; ++x) {
+				if(x == xMain && y == yMain)
+					continue;
+				if(e.getSource() == cardMatrix[y][x]) 
+					if(isClickable(x, y)) {
+						boolean isMoveEnabled = moveSet(x,y);
+						if(isMoveEnabled)
+							moveCard(x,y);
+					}
+						
+			}
+		}
 	}
 
 	@Override
