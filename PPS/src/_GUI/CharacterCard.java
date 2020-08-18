@@ -43,14 +43,14 @@ public class CharacterCard extends Card{
 		else if(cardType instanceof RepairPotionData) {
 			RepairPotionData rpd = (RepairPotionData) cardType;
 			leftValue = rpd.getAmount();
-			status = new JLabel(String.format("⬆️⚔️⬆️: "+leftValue));
+			status = new JLabel(String.format("⬆️⚔️: "+leftValue));
 			this.add(status);
 			status.setBounds(STATUS_RECT);
 		}
 		else if(cardType instanceof PotionData) {
 			PotionData pd = (PotionData) cardType;
 			leftValue = pd.getHpHealed();
-			status = new JLabel(String.format("⬆️❤️⬆️: "+leftValue));
+			status = new JLabel(String.format("⬆️❤️: "+leftValue));
 			this.add(status);
 			status.setBounds(STATUS_RECT);
 		}
