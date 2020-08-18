@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MainCharactersList {
 	
-	List<MainCharacterData> choiceMenu;
+	public List<MainCharacterData> choiceMenu;
 	
 	public MainCharactersList() {
 		
