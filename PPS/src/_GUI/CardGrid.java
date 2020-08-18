@@ -253,7 +253,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	private void gameOver() {
 		if(isAlive == false) {
 			JOptionPane.showMessageDialog(this, "GAME OVER");
-			//ADD HERE 
+			parent.parent.initMainPanel();
 		}
 	}
 
