@@ -24,7 +24,7 @@ public class GamePanel extends JPanel{
 	final int SCREEN_HEIGTH = Toolkit.getDefaultToolkit().getScreenSize().height;
 	
 	final Rectangle MENU_RECT = new Rectangle(SCREEN_WIDTH - 250, 30, 200, 100);
-	final Rectangle CARD_GRID_RECT = new Rectangle(500, 80, 450, 600);
+	final Rectangle CARD_GRID_RECT = new Rectangle((SCREEN_WIDTH / 2) - (450 / 2), 80, 450, 600);
 	
 	public GamePanel(JFrame parent) {
 		

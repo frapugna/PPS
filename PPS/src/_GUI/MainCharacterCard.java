@@ -16,9 +16,14 @@ public class MainCharacterCard extends JPanel{
 	static final int WIDTH = 150;
 	static final int HEIGHT = 200;
 	
-	final Rectangle HP_RECT = new Rectangle(5, 160, 70, 30);
-	final Rectangle DURABILITY_RECT = new Rectangle(75, 160, 70, 30);
+	final Rectangle HP_RECT = new Rectangle(35, 160, 40, 30);
+	final Rectangle HP_ICON_RECT = new Rectangle(5, 160, 30, 30);
+	final String HP_ICON_PATH = "resources/dog.jpg";
 	
+	final Rectangle DURABILITY_RECT = new Rectangle(105, 160, 40, 30);
+	final Rectangle DURABILITY_ICON_RECT = new Rectangle(75, 160, 30, 30);
+	final String DURABILITY_ICON_PATH = "resources/dog.jpg";
+
 	
 	int xCoor;
 	int yCoor;
@@ -27,8 +32,13 @@ public class MainCharacterCard extends JPanel{
 	
 	ImageIcon image;
 	MainCharacterData cardType;
+	
 	JLabel hpLabel;
+	JLabel hpIcon;
+	
 	JLabel durabilityLabel;
+	JLabel durabilityIcon;
+	
 	
 	
 	public MainCharacterCard(int xCoor, int yCoor, MainCharacterData data) {
@@ -50,14 +60,22 @@ public class MainCharacterCard extends JPanel{
 		l.setBounds(5, 5, 140, 140);
 		
 		hp = cardType.gethp();
-		hpLabel = new JLabel(String.format("❤️: "+hp));
+		hpLabel = new JLabel(String.format(": "+hp));
 		this.add(hpLabel);
 		hpLabel.setBounds(HP_RECT);
 		
+		hpIcon = new JLabel(new ImageIcon(HP_ICON_PATH));
+		this.add(hpIcon);
+		hpIcon.setBounds(HP_ICON_RECT);
+		
 		weaponDurability = cardType.getWeaponDurability();
-		durabilityLabel = new JLabel(String.format("⚔️: "+weaponDurability));
+		durabilityLabel = new JLabel(String.format(": "+weaponDurability));
 		this.add(durabilityLabel);
 		durabilityLabel.setBounds(DURABILITY_RECT);
+		
+		durabilityIcon = new JLabel(new ImageIcon(DURABILITY_ICON_PATH));
+		this.add(durabilityIcon);
+		durabilityIcon.setBounds(DURABILITY_ICON_RECT);
 		
 	}
 
