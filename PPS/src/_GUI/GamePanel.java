@@ -37,11 +37,15 @@ public class GamePanel extends JPanel{
 		returnToMenu.setBounds(MENU_RECT);
 		add(returnToMenu);
 		
-		cardGrid = new CardGrid();
+		cardGrid = new CardGrid(this);
 		cardGrid.setBounds(CARD_GRID_RECT);
 		cardGrid.setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
 		add(cardGrid);
 		
-	} 
+	}
+
+	public JButton getReturnToMenu() {
+		return returnToMenu;
+	}
 	
 }

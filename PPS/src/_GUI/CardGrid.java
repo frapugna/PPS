@@ -21,6 +21,8 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	private static final long serialVersionUID = 1L;
 
+	JPanel parent;
+	
 	CharacterCard[][] cardMatrix;
 	MainCharacterCard mainCharacter;
 	/*
@@ -34,8 +36,9 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	int xMain;
 	int yMain;
 
-	public CardGrid() {
+	public CardGrid(JPanel parent) {
 		super();
+		this.parent = parent;
 		this.setLayout(null);
 
 		initCardMatrix();
@@ -239,7 +242,13 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		return out;
 	}
 	private void moveCard(int x, int y) {
-
+		
+	}
+	private void gameOver() {
+		if(isAlive == false) {
+			JOptionPane.showMessageDialog(this, "GAME OVER");
+			
+		}
 	}
 
 	@Override
@@ -271,6 +280,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 				if(e.getSource() == cardMatrix[y][x]) 
 					if(isClickable(x, y)) {
 						boolean isMoveEnabled = moveSet(x,y);
+						gameOver();
 						if(isMoveEnabled)
 							moveCard(x,y);
 					}
@@ -297,7 +307,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("MouseMoved");
+		
 		updateCardMatrixBorders();
 
 		for(int y = 0; y < 3; ++y) {
