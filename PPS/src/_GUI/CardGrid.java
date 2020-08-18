@@ -45,9 +45,12 @@ public class CardGrid extends JPanel implements MouseListener{
 					cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 					cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 					this.add(cardMatrix[y][x]);
+
+					cardMatrix[y][x].addMouseListener(this);
 				}
 			}
 		}
+		setBorder();
 
 	}
 	/*
@@ -56,24 +59,75 @@ public class CardGrid extends JPanel implements MouseListener{
 	 * but MainCharacterCard is a different class)
 	 */
 	private void initMainCharacterCard() {
-		
+
 		Object[] options = {"Berserker","Warrior","Archer"};
 		int answer = JOptionPane.showOptionDialog(this, "Choose your class!", "Character selection",JOptionPane.YES_NO_CANCEL_OPTION , JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-		
+
 		MainCharactersList list = new MainCharactersList();
 		MainCharacterData data = list.getChoiceMenu().get(answer);
 		xMain = 1;
 		yMain = 1;
 		mainCharacter = new MainCharacterCard(xMain, yMain, data);
-		
+
 		this.add(mainCharacter);
 		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
 		mainCharacter.setBorder(BorderFactory.createLineBorder(Color.RED, 5));	
+		mainCharacter.addMouseListener(this);
 	}
-	
+	/*
+	 * This methods change to another color clickable cards' borders 
+	 */
+	private void setBorder() {
+		for(int y = 0; y < 3; ++y) {
+			for(int x = 0; x < 3; ++x) {
+				if(isClickable(x,y))
+					cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
+			}
+		}
+	}
+	/*
+	 * this method returns true if a position is clickable, else false
+	 */
+	private boolean isClickable(int x, int y) {
+		if(isLeft(x,y) || isRight(x,y) || isUp(x,y) || isDown(x,y))
+			return true;
+		else
+			return false;
+	}
+	/*
+	 * Those methods return true if a card to the right, left, is upper or is down the main character card
+	 * else false
+	 */
+	private boolean isLeft(int x, int y) {
+		if((xMain - 1) >= 0 && x == (xMain - 1) && y == yMain)
+			return true;
+		else return false;
+	}
+	private boolean isRight(int x, int y) {
+		if((xMain + 1) <= 2 && x == (xMain + 1) && y == yMain)
+			return true;
+		else 
+			return false;
+	}
+	private boolean isUp(int x, int y) {
+		if((yMain - 1) >= 0 && y == (yMain - 1) && x == xMain)
+			return true;
+		else 
+			return false;
+	}
+	private boolean isDown(int x, int y) {
+		if((yMain + 1) < 3 && y == (yMain + 1) && x == xMain)
+			return true;
+		else
+			return false;
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource()==mainCharacter)
+			System.out.println("Character clicked!");
+		else 
+			System.out.println("Card clicked");
 
 	}
 
