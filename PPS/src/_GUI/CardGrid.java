@@ -3,6 +3,7 @@ package _GUI;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -11,7 +12,7 @@ import javax.swing.JPanel;
 import domainClasses.MainCharacterData;
 import domainClasses.MainCharactersList;
 
-public class CardGrid extends JPanel implements MouseListener{
+public class CardGrid extends JPanel implements MouseListener, MouseMotionListener{
 
 	private static final long serialVersionUID = 1L;
 
@@ -47,10 +48,11 @@ public class CardGrid extends JPanel implements MouseListener{
 					this.add(cardMatrix[y][x]);
 
 					cardMatrix[y][x].addMouseListener(this);
+					cardMatrix[y][x].addMouseMotionListener(this);
 				}
 			}
 		}
-		setBorder();
+		setClickableBorder();
 
 	}
 	
@@ -74,17 +76,40 @@ public class CardGrid extends JPanel implements MouseListener{
 		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
 		mainCharacter.setBorder(BorderFactory.createLineBorder(Color.RED, 5));	
 		mainCharacter.addMouseListener(this);
+		mainCharacter.addMouseMotionListener(this);
 	}
 	/*
 	 * This methods change to another color clickable cards' borders 
 	 */
-	private void setBorder() {
+	private void setClickableBorder() {
 		for(int y = 0; y < 3; ++y) {
 			for(int x = 0; x < 3; ++x) {
 				if(isClickable(x,y))
 					cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
 			}
 		}
+	}
+	
+	/*
+	 * This method resets the the borders of every Character card in game to the default color 
+	 * we will use this method in the updateCardMatrixBorders() method to set the correct status of the matrix's border every time 
+	 * it is necessary
+	 */
+	private void setStandardBorder() {
+		for(int y = 0; y < 3; ++y) {
+			for(int x = 0; x < 3; ++x) {
+				if(x == xMain && y == yMain)
+					continue;
+				cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+			}
+		}
+	}
+	/*
+	 * this method update the card matrix border and card colors to the current status of the matrix
+	 */
+	private void updateCardMatrixBorders() {
+		setStandardBorder();
+		setClickableBorder();
 	}
 	/*
 	 * this method returns true if a position is clickable, else false
@@ -134,25 +159,47 @@ public class CardGrid extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		return;
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		System.out.println("MouseDragged");
+		updateCardMatrixBorders();
+		
+		for(int y = 0; y < 3; ++y) {
+			for(int x = 0; x < 3; ++x) {
+				if(x == xMain && y == yMain)
+					continue;
+				if(e.getSource() == cardMatrix[y][x]) 
+					if(isClickable(x, y))
+						cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+			}
+		}
 
 	}
 
