@@ -53,7 +53,6 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			}
 		}
 		setClickableBorder();
-
 	}
 	/*
 	 * This method initially show a option dialog asking the player to choose his class,
@@ -74,7 +73,6 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		this.add(mainCharacter);
 		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
 		mainCharacter.setBorder(BorderFactory.createLineBorder(Color.RED, 5));	
-		mainCharacter.addMouseListener(this);
 		mainCharacter.addMouseMotionListener(this);
 	}
 	/*
@@ -88,7 +86,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			}
 		}
 	}
-	
+
 	/*
 	 * This method resets the the borders of every Character card in game to the default color 
 	 * we will use this method in the updateCardMatrixBorders() method to set the correct status of the matrix's border every time 
@@ -149,28 +147,31 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e.getSource()==mainCharacter)
-			System.out.println("Character clicked!");
-		else 
-			System.out.println("Card clicked");
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		return;
 
+		for(int y = 0; y < 3; ++y) {
+			for(int x = 0; x < 3; ++x) {
+				if(x == xMain && y == yMain)
+					continue;
+				if(e.getSource() == cardMatrix[y][x]) 
+					if(isClickable(x, y))
+						cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
+			}
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		return;
+		updateCardMatrixBorders();
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		return;
 
 	}
 
@@ -187,9 +188,9 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("MouseDragged");
+		System.out.println("MouseMoved");
 		updateCardMatrixBorders();
-		
+
 		for(int y = 0; y < 3; ++y) {
 			for(int x = 0; x < 3; ++x) {
 				if(x == xMain && y == yMain)
