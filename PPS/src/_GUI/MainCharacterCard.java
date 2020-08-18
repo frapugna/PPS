@@ -42,7 +42,7 @@ public class MainCharacterCard extends JPanel{
 		
 		this.cardType = data;
 		
-		image = new ImageIcon("resources/dog.jpg"); 	//cardType.getImage();
+		image = new ImageIcon(cardType.getImagePath()); 	
 		JLabel l = new JLabel(image);
 		
 		add(l);

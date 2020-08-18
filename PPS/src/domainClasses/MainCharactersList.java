@@ -11,8 +11,9 @@ public class MainCharactersList {
 		
 		choiceMenu = new ArrayList<MainCharacterData>();
 		
-		choiceMenu.add(new MainCharacterData("resources//warrior.png", "Maryo", 15, 2));;
-		
+		choiceMenu.add(new MainCharacterData("resources/cardIcons/warriorResized.png", "Maryo", 15, 5));
+		choiceMenu.add(new MainCharacterData("resources/cardIcons/assassinResized.jpg", "Ugo", 10, 10));
+		choiceMenu.add(new MainCharacterData("resources/cardIcons/archerResized.jpg", "Myrko", 4, 16));
 	}
 
 	public List<MainCharacterData> getChoiceMenu() {
