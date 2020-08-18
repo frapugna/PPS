@@ -156,7 +156,10 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			return false;
 	}
 
-
+	/*
+	 * This method implements all the interactions between cards of different types
+	 * @return: it is a boolean which will be used to decide if the moveCard method has to be called
+	 */
 	private boolean moveSet(int x, int y) {
 		boolean out = true;
 		if(cardMatrix[y][x].getCardType() instanceof WeaponData) {
