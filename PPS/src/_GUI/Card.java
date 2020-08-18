@@ -36,14 +36,14 @@ public abstract class Card extends JPanel{
 		this.setLayout(null);
 		this.xCoor = xCoor;
 		this.yCoor = yCoor;
-		
+	
 		Dealer d = new Dealer();
 		cardType = d.drawCard();
 		
 		this.setSize(WIDTH, HEIGHT);
 		this.setBackground(Color.ORANGE);
 		
-		image = new ImageIcon("dog.jpg");
+		image = new ImageIcon(cardType.getImagePath());
 		JLabel l = new JLabel(image);
 		
 		add(l);

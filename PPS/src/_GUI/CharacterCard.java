@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JLabel;
 
+import domainClasses.AbstractCardData;
 import domainClasses.MinionData;
 import domainClasses.PotionData;
 import domainClasses.RepairPotionData;

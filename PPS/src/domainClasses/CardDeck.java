@@ -31,32 +31,32 @@ public class CardDeck {
 		
 		minionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		minionList.add(new MinionData(null, "Minion", 6));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
-		minionList.add(new MinionData(null, "Minion2", 4));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		minionList.add(new MinionData("resources/cardIcons/skeletonResized.jpg", "Skeleton", 6));	
+		
 		
 	
 		potionList = new ArrayList<AbstractCardData>();
 
 		//add card data here
-		potionList.add(new PotionData(null, "Potion", 12));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
-		potionList.add(new PotionData(null, "Potion2", 1));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		potionList.add(new PotionData("resources/cardIcons/mediumPotionResized.png", "MediumPotion", 12));	
+		
 		
 		repairPotionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		repairPotionList.add(new RepairPotionData(null, "Rp", 12));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
-		repairPotionList.add(new RepairPotionData(null, "Rp2", 6));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/BlueRepairPotionResized.jpg", "BlueMediumRP", 6));
+		
 
 		
 		trapList = new ArrayList<AbstractCardData>();
 		//add card data here
-		trapList.add(new TrapData(null, "Trap", 2));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
-		trapList.add(new TrapData(null, "Trap2", 82));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		trapList.add(new TrapData("resources/cardIcons/mimicResized.png", "Mimic", 15));	
+		
 	
 		
 		weaponList = new ArrayList<AbstractCardData>();
 		//add card data here
-		weaponList.add(new WeaponData(null, "Weapon", 4));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
-		weaponList.add(new WeaponData(null, "Weapon2", 100000));	//DELETE THIS, IT EXISTS JUST FOR EXAMPLE
+		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 4));	
+		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.jpg", "LaserGun", 10));	
 	
 		
 		goodCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
