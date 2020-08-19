@@ -1,17 +1,18 @@
 package _GUI;
 
+import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.JFrame;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import domainClasses.MainCharactersList;
 
-public class CharacterSelectionPanel extends JPanel implements MouseListener{
+public class CharacterSelectionPanel extends JPanel implements MouseListener, MouseMotionListener{
 
 	/**
 	 * 
@@ -38,16 +39,19 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener{
 		this.add(berzerker);
 		berzerker.setLocation(10, 30);
 		berzerker.addMouseListener(this);
+		berzerker.addMouseMotionListener(this);
 		
 		warrior = new MainCharacterCard(1, 1, charactersList.choiceMenu.get(1));
 		this.add(warrior);
 		warrior.setLocation(180, 30);
 		warrior.addMouseListener(this);
+		warrior.addMouseMotionListener(this);
 		
 		archer = new MainCharacterCard(1, 1, charactersList.choiceMenu.get(2));
 		this.add(archer);
 		archer.setLocation(350, 30);
 		archer.addMouseListener(this);
+		archer.addMouseMotionListener(this);
 		
 		selectionLabel = new JLabel("Select your character");
 		this.add(selectionLabel);
@@ -67,9 +71,6 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == berzerker) {
-			parent.changePaneTo(new GamePanel(parent, berzerker));
-		}
 	}
 
 	@Override
@@ -98,4 +99,29 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener{
 		
 	}
 
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		
+		updateCharacterBorders();
+		
+		if(e.getSource() == berzerker)
+			berzerker.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+		if(e.getSource() == warrior)
+			warrior.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+		if(e.getSource() == archer)
+			archer.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+		
+	}
+
+	private void updateCharacterBorders() {
+		berzerker.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+		warrior.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+		archer.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+	}
 }
