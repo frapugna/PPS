@@ -1,17 +1,20 @@
 package _GUI;
 
 import java.awt.Color;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-import domainClasses.MainCharacterData;
-import domainClasses.MainCharactersList;
 import domainClasses.MinionData;
 import domainClasses.PotionData;
 import domainClasses.RepairPotionData;
@@ -23,13 +26,18 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	private static final long serialVersionUID = 1L;
 
 	GamePanel parent;
-	
+
 	CharacterCard[][] cardMatrix;
 	MainCharacterCard mainCharacter;
 	/*
 	 * If true you keep playing
 	 */
 	boolean isAlive;
+	/*
+	 * those attribute are used to synchronize the timers used during the cards' animation 
+	 */
+	boolean isMoveFinished;
+	boolean keepMoving;
 	/*
 	 * xMain: it is the position of the main character on the x axis
 	 * yMain: it is the position of the main character on the y axis
@@ -46,11 +54,12 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		super();
 		this.parent = parent;
 		this.setLayout(null);
-		
+
+		isMoveFinished = true;
 		score = 0;
-		
+
 		this.mainCharacter = mainCharacter;
-		
+
 		initCardMatrix();
 	}
 
@@ -84,7 +93,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	private void initMainCharacterCard() {
 
-	
+
 		xMain = 1;
 		yMain = 1;
 
@@ -132,6 +141,8 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 * this method returns true if a position is clickable, else false
 	 */
 	private boolean isClickable(int x, int y) {
+		if(!isMoveFinished)
+			return false;
 		if(isLeft(x,y) || isRight(x,y) || isUp(x,y) || isDown(x,y))
 			return true;
 		else
@@ -263,15 +274,70 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					if(isDown(x,y))
 						moveDown(x,y);
 	}
+//------------------------STARTS MOVE DOWN BLOCK------------------------------------------
+	private void moveMainCharacterDownSmoothly(int yEnd, int xStart, int yStart) {
+
+		new Timer(8, new ActionListener() {
+			int yPixel = yStart * MainCharacterCard.HEIGHT;
+
+			int xPixel = xStart * MainCharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+
+				mainCharacter.setLocation(xPixel,yPixel );
+				System.out.println("MovingMainCharacter");
+				if(yPixel == yEnd * MainCharacterCard.HEIGHT) {
+					if(yStart == 0) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+					}
+					else
+						keepMoving = true;
+					remove(cardMatrix[yEnd][xStart]);
+					((Timer)e.getSource()).stop();
+				}
+				else
+					yPixel += 2;
+			}
+		}).start();	
+	}
+	private void moveDownCharacterCardSmoothly(int x, int yOld, int yNew, CharacterCard card) {
+		new Timer(8, new ActionListener() {
+			int yPixel = yOld * CharacterCard.HEIGHT;
+
+			int xPixel = x * CharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+				if(keepMoving == true) {
+					card.setLocation(xPixel,yPixel );
+					System.out.println("MovingCharacter");
+					if(yPixel == yNew * CharacterCard.HEIGHT) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+						((Timer)e.getSource()).stop();
+					}
+					else
+						yPixel += 2;
+				}
+			}
+		}).start();	
+	}
+
 	private void moveDown(int x, int y) {
-		this.remove(cardMatrix[y][x]);
+
+		setStandardBorder();
+
+		isMoveFinished = false;
+		keepMoving = false;
+
+		moveMainCharacterDownSmoothly(y,xMain,yMain);
+
 		xMain = x;
 		yMain = y;
-		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+
 		--y;
 		while((y - 1) >= 0) {
+
+			moveDownCharacterCardSmoothly(x, y-1, y, cardMatrix[y-1][x]);
 			cardMatrix[y][x] = cardMatrix[y-1][x];
-			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 			cardMatrix[y][x].setxCoor(x);
 			cardMatrix[y][x].setyCoor(y);
 			--y;
@@ -281,18 +347,69 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 		cardMatrix[y][x].addMouseListener(this);
 		cardMatrix[y][x].addMouseMotionListener(this);
-		
-		updateCardMatrixBorders();
+	}
+//------------------------------ENDS MOVE DOWN BLOCK--------------------------------------------------
+//------------------------------STARTS MOVE UP BLOCK--------------------------------------------------
+	private void moveMainCharacterUpSmoothly(int yEnd, int xStart, int yStart) {
+
+		new Timer(8, new ActionListener() {
+			int yPixel = yStart * MainCharacterCard.HEIGHT;
+
+			int xPixel = xStart * MainCharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+
+				mainCharacter.setLocation(xPixel,yPixel );
+				System.out.println("MovingMainCharacter");
+				if(yPixel == yEnd * MainCharacterCard.HEIGHT) {
+					if(yStart == 2) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+					}
+					else
+						keepMoving = true;
+					remove(cardMatrix[yEnd][xStart]);
+					((Timer)e.getSource()).stop();
+				}
+				else
+					yPixel -= 2;
+			}
+		}).start();	
+	}
+	private void moveUpCharacterCardSmoothly(int xOld, int yOld, int yNew, CharacterCard card) {
+		new Timer(8, new ActionListener() {
+			int yPixel = yOld * CharacterCard.HEIGHT;
+
+			int xPixel = xOld * CharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+				if(keepMoving == true) {
+					card.setLocation(xPixel,yPixel );
+					System.out.println("MovingCharacter");
+					if(yPixel == yNew * CharacterCard.HEIGHT) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+						((Timer)e.getSource()).stop();
+					}
+					else
+						yPixel -= 2;
+				}
+			}
+		}).start();	
 	}
 	private void moveUp(int x, int y) {
-		this.remove(cardMatrix[y][x]);
+		setStandardBorder();
+		
+		isMoveFinished = false;
+		keepMoving = false;
+		
+		moveMainCharacterUpSmoothly(y,xMain,yMain);
+		
 		xMain = x;
 		yMain = y;
-		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		
 		++y;
 		while((y + 1) <= 2) {
+			moveUpCharacterCardSmoothly(x, y+1, y, cardMatrix[y+1][x]);
 			cardMatrix[y][x] = cardMatrix[y+1][x];
-			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 			cardMatrix[y][x].setxCoor(x);
 			cardMatrix[y][x].setyCoor(y);
 			++y;
@@ -302,18 +419,71 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 		cardMatrix[y][x].addMouseListener(this);
 		cardMatrix[y][x].addMouseMotionListener(this);
-		
-		updateCardMatrixBorders();
+
+
+	}
+//------------------------ENDS MOVE UP BLOCK-----------------------------------------
+//------------------------STARTS MOVE LEFT BLOCK-------------------------------------
+	private void moveMainCharacterLeftSmoothly(int xEnd, int xStart, int yStart) {
+
+		new Timer(8, new ActionListener() {
+			int yPixel = yStart * MainCharacterCard.HEIGHT;
+
+			int xPixel = xStart * MainCharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+
+				mainCharacter.setLocation(xPixel,yPixel );
+				System.out.println("MovingMainCharacter");
+				if(xPixel == xEnd * MainCharacterCard.WIDTH) {
+					if(xStart == 2) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+					}
+					else
+						keepMoving = true;
+					remove(cardMatrix[yStart][xEnd]);
+					((Timer)e.getSource()).stop();
+				}
+				else
+					xPixel -= 2;
+			}
+		}).start();	
+	}
+	private void moveLeftCharacterCardSmoothly(int xOld, int yOld, int xNew, CharacterCard card) {
+		new Timer(8, new ActionListener() {
+			int yPixel = yOld * CharacterCard.HEIGHT;
+
+			int xPixel = xOld * CharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+				if(keepMoving == true) {
+					card.setLocation(xPixel,yPixel );
+					System.out.println("MovingCharacter");
+					if(xPixel == xNew * CharacterCard.WIDTH) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+						((Timer)e.getSource()).stop();
+					}
+					else
+						xPixel -= 2;
+				}
+			}
+		}).start();	
 	}
 	private void moveLeft(int x, int y) {
-		this.remove(cardMatrix[y][x]);
+		setStandardBorder();
+		
+		isMoveFinished = false;
+		keepMoving = false;
+		
+		moveMainCharacterLeftSmoothly(x,xMain,yMain);
+		
 		xMain = x;
 		yMain = y;
-		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		
 		++x;
 		while((x + 1) <= 2) {
+			moveLeftCharacterCardSmoothly(x+1, y, x, cardMatrix[y][x+1]);
 			cardMatrix[y][x] = cardMatrix[y][x+1];
-			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 			cardMatrix[y][x].setxCoor(x);
 			cardMatrix[y][x].setyCoor(y);
 			++x;
@@ -323,19 +493,73 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 		cardMatrix[y][x].addMouseListener(this);
 		cardMatrix[y][x].addMouseMotionListener(this);
+
 		
-		updateCardMatrixBorders();
+	}
+//----------------------ENDS MOVE LEFT BLOCK---------------------------------------------
+//----------------------STARTS MOVE RIGHT BLOCK------------------------------------------
+	
+	private void moveMainCharacterRightSmoothly(int xEnd, int xStart, int yStart) {
+
+		new Timer(8, new ActionListener() {
+			int yPixel = yStart * MainCharacterCard.HEIGHT;
+
+			int xPixel = xStart * MainCharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+
+				mainCharacter.setLocation(xPixel,yPixel );
+				System.out.println("MovingMainCharacter");
+				if(xPixel == xEnd * MainCharacterCard.WIDTH) {
+					if(xStart == 0) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+					}
+					else
+						keepMoving = true;
+					remove(cardMatrix[yStart][xEnd]);
+					((Timer)e.getSource()).stop();
+				}
+				else
+					xPixel += 2;
+			}
+		}).start();	
+	}
+	private void moveRightCharacterCardSmoothly(int xOld, int yOld, int xNew, CharacterCard card) {
+		new Timer(8, new ActionListener() {
+			int yPixel = yOld * CharacterCard.HEIGHT;
+
+			int xPixel = xOld * CharacterCard.WIDTH;
+			public void actionPerformed(ActionEvent e) {
+				if(keepMoving == true) {
+					card.setLocation(xPixel,yPixel );
+					System.out.println("MovingCharacter");
+					if(xPixel == xNew * CharacterCard.WIDTH) {
+						isMoveFinished = true;
+						updateCardMatrixBorders();
+						((Timer)e.getSource()).stop();
+					}
+					else
+						xPixel += 2;
+				}
+			}
+		}).start();	
 	}
 	
 	private void moveRight(int x, int y) {
-		this.remove(cardMatrix[y][x]);
+		setStandardBorder();
+		
+		isMoveFinished = false;
+		keepMoving = false;
+		
+		moveMainCharacterRightSmoothly(x,xMain,yMain);
+		
 		xMain = x;
 		yMain = y;
-		mainCharacter.setLocation(xMain * MainCharacterCard.WIDTH, yMain * MainCharacterCard.HEIGHT);
+		
 		--x;
 		while((x - 1) >= 0) {
+			moveRightCharacterCardSmoothly(x-1, y, x, cardMatrix[y][x-1]);
 			cardMatrix[y][x] = cardMatrix[y][x-1];
-			cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 			cardMatrix[y][x].setxCoor(x);
 			cardMatrix[y][x].setyCoor(y);
 			--x;
@@ -345,11 +569,9 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 		cardMatrix[y][x].addMouseListener(this);
 		cardMatrix[y][x].addMouseMotionListener(this);
-		
-		updateCardMatrixBorders();
-		
+
 	}
-	
+//---------------------------ENDS MOVE RIGHT BLOCK----------------------------------------------
 	/*
 	 * this method is called after every interaction, it stops the game if your hp are <= 0
 	 */
@@ -419,7 +641,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
+
 		updateCardMatrixBorders();
 
 		for(int y = 0; y < 3; ++y) {
