@@ -22,7 +22,7 @@ import domainClasses.WeaponData;
 public class CardGrid extends JPanel implements MouseListener, MouseMotionListener{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	GamePanel parent;
 
 	CharacterCard[][] cardMatrix;
@@ -251,6 +251,9 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 										tmpDurability -= tmpMinionHp;
 										mainCharacter.setWeaponDurability(tmpDurability);
 										mainCharacter.getDurabilityLabel().setText(":"+mainCharacter.getWeaponDurability());
+										
+										cardMatrix[y][x].setLeftValue(0);
+										cardMatrix[y][x].getStatus().setText(":"+0);
 									}
 
 						}
@@ -275,12 +278,13 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 //------------------------STARTS MOVE DOWN BLOCK------------------------------------------
 	private void moveMainCharacterDownSmoothly(int yEnd, int xStart, int yStart) {
 
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
+			
 			int yPixel = yStart * MainCharacterCard.HEIGHT;
 
 			int xPixel = xStart * MainCharacterCard.WIDTH;
 			public void actionPerformed(ActionEvent e) {
-
+				
 				mainCharacter.setLocation(xPixel,yPixel );
 				System.out.println("MovingMainCharacter");
 				if(yPixel == yEnd * MainCharacterCard.HEIGHT) {
@@ -299,7 +303,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		}).start();	
 	}
 	private void moveDownCharacterCardSmoothly(int x, int yOld, int yNew, CharacterCard card) {
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yOld * CharacterCard.HEIGHT;
 
 			int xPixel = x * CharacterCard.WIDTH;
@@ -325,7 +329,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 		isMoveFinished = false;
 		keepMoving = false;
-
+		
 		moveMainCharacterDownSmoothly(y,xMain,yMain);
 
 		xMain = x;
@@ -350,13 +354,14 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 //------------------------------STARTS MOVE UP BLOCK--------------------------------------------------
 	private void moveMainCharacterUpSmoothly(int yEnd, int xStart, int yStart) {
 
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yStart * MainCharacterCard.HEIGHT;
 
 			int xPixel = xStart * MainCharacterCard.WIDTH;
 			public void actionPerformed(ActionEvent e) {
-
+				
 				mainCharacter.setLocation(xPixel,yPixel );
+				mainCharacter.show(true);
 				System.out.println("MovingMainCharacter");
 				if(yPixel == yEnd * MainCharacterCard.HEIGHT) {
 					if(yStart == 2) {
@@ -374,7 +379,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		}).start();	
 	}
 	private void moveUpCharacterCardSmoothly(int xOld, int yOld, int yNew, CharacterCard card) {
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yOld * CharacterCard.HEIGHT;
 
 			int xPixel = xOld * CharacterCard.WIDTH;
@@ -424,7 +429,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 //------------------------STARTS MOVE LEFT BLOCK-------------------------------------
 	private void moveMainCharacterLeftSmoothly(int xEnd, int xStart, int yStart) {
 
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yStart * MainCharacterCard.HEIGHT;
 
 			int xPixel = xStart * MainCharacterCard.WIDTH;
@@ -448,7 +453,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		}).start();	
 	}
 	private void moveLeftCharacterCardSmoothly(int xOld, int yOld, int xNew, CharacterCard card) {
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yOld * CharacterCard.HEIGHT;
 
 			int xPixel = xOld * CharacterCard.WIDTH;
@@ -499,7 +504,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	
 	private void moveMainCharacterRightSmoothly(int xEnd, int xStart, int yStart) {
 
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yStart * MainCharacterCard.HEIGHT;
 
 			int xPixel = xStart * MainCharacterCard.WIDTH;
@@ -523,7 +528,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		}).start();	
 	}
 	private void moveRightCharacterCardSmoothly(int xOld, int yOld, int xNew, CharacterCard card) {
-		new Timer(8, new ActionListener() {
+		new Timer(6, new ActionListener() {
 			int yPixel = yOld * CharacterCard.HEIGHT;
 
 			int xPixel = xOld * CharacterCard.WIDTH;
