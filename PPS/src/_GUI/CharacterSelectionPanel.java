@@ -75,14 +75,15 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(e.getSource() == berzerker) {
-			parent.changePaneTo(new GamePanel(parent, berzerker));
-		}
-		if(e.getSource() == archer) {
-			parent.changePaneTo(new GamePanel(parent, archer));
+			parent.changePaneTo(new GamePanel(parent, new MainCharacterCard(1, 1, charactersList.choiceMenu.get(0))));
 		}
 		if(e.getSource() == warrior) {
-			parent.changePaneTo(new GamePanel(parent, warrior));
+			parent.changePaneTo(new GamePanel(parent, new MainCharacterCard(1, 1, charactersList.choiceMenu.get(1))));
 		}
+		if(e.getSource() == archer) {
+			parent.changePaneTo(new GamePanel(parent, new MainCharacterCard(1, 1, charactersList.choiceMenu.get(2))));
+		}
+	
 	}
 
 	@Override

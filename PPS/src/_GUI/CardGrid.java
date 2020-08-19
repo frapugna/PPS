@@ -218,7 +218,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 							if(tmpDurability == 0) {
 								tmpHp -= tmpMinionHp;
-								if(tmpHp < 0)
+								if(tmpHp <= 0)
 									isAlive = false;
 								mainCharacter.setHp(tmpHp);
 								mainCharacter.getHpLabel().setText(":"+mainCharacter.getHp());
