@@ -1,6 +1,7 @@
 package _GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -45,6 +46,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 		scoreLabel = new JLabel("Score: "+0);
 		add(scoreLabel);
+		scoreLabel.setFont(new Font("Calibri", Font.BOLD, 30));
 		scoreLabel.setBounds(SCORE_RECT);
 		
 		cardGrid = new CardGrid(this, mainCharacter);
