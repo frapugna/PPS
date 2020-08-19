@@ -70,7 +70,6 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 				if(x == 1 && y ==1) {
 					continue;
 				}
-
 				cardMatrix[y][x] = new CharacterCard(x, y);
 				cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 				cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
