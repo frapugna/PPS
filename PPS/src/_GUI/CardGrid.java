@@ -6,12 +6,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import domainClasses.MainCharacterData;
-import domainClasses.MainCharactersList;
 import domainClasses.MinionData;
 import domainClasses.PotionData;
 import domainClasses.RepairPotionData;
