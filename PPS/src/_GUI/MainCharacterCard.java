@@ -145,9 +145,8 @@ public class MainCharacterCard extends JPanel{
 		return durabilityLabel;
 	}
 
-
+	
 	public void setDurabilityLabel(JLabel durabilityLabel) {
 		this.durabilityLabel = durabilityLabel;
 	}
-	
 }

@@ -21,6 +21,5 @@ public class HighScorePanel extends JPanel{
 		
 		this.returnToMenu = new JButton("Menu");
 		this.add(returnToMenu);
-	} 
-	
+	} 	
 }
