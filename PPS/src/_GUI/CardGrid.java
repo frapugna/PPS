@@ -22,7 +22,8 @@ import domainClasses.WeaponData;
 public class CardGrid extends JPanel implements MouseListener, MouseMotionListener{
 
 	private static final long serialVersionUID = 1L;
-
+	final int SPEED = 2;
+	
 	GamePanel parent;
 
 	CharacterCard[][] cardMatrix;
@@ -297,7 +298,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					((Timer)e.getSource()).stop();
 				}
 				else
-					yPixel += 2;
+					yPixel += SPEED;
 			}
 		}).start();	
 	}
@@ -316,7 +317,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 						((Timer)e.getSource()).stop();
 					}
 					else
-						yPixel += 2;
+						yPixel += SPEED;
 				}
 			}
 		}).start();	
@@ -374,7 +375,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					((Timer)e.getSource()).stop();
 				}
 				else
-					yPixel -= 2;
+					yPixel -= SPEED;
 			}
 		}).start();	
 	}
@@ -393,7 +394,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 						((Timer)e.getSource()).stop();
 					}
 					else
-						yPixel -= 2;
+						yPixel -= SPEED;
 				}
 			}
 		}).start();	
@@ -449,7 +450,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					((Timer)e.getSource()).stop();
 				}
 				else
-					xPixel -= 2;
+					xPixel -= SPEED;
 			}
 		}).start();	
 	}
@@ -468,7 +469,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 						((Timer)e.getSource()).stop();
 					}
 					else
-						xPixel -= 2;
+						xPixel -= SPEED;
 				}
 			}
 		}).start();	
@@ -524,7 +525,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					((Timer)e.getSource()).stop();
 				}
 				else
-					xPixel += 2;
+					xPixel += SPEED;
 			}
 		}).start();	
 	}
@@ -543,7 +544,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 						((Timer)e.getSource()).stop();
 					}
 					else
-						xPixel += 2;
+						xPixel += SPEED;
 				}
 			}
 		}).start();	
