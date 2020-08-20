@@ -115,6 +115,8 @@ public class MainFrame extends JFrame implements ActionListener {
 			mainFrame.setSize(720, 660);
 		if(panel instanceof CharacterSelectionPanel)
 			mainFrame.setSize(530, 280);
+		if(panel instanceof HighScorePanel);
+			mainFrame.setSize(550, 800);
 		
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.repaint();
