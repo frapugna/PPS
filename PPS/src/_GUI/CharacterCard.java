@@ -21,7 +21,7 @@ public class CharacterCard extends Card{
 	
 	final Rectangle STATUS_RECT = new Rectangle(35, 160, 70, 30);
 	final Rectangle STATUS_ICON_RECT = new Rectangle(5, 160, 30, 30);
-	final String HEART_ICON_PATH = "resources/dog.jpg";
+	final String HEART_ICON_PATH = "resources/cardIcons/heartIcon.png";
 	final String SWORD_ICON_PATH = "resources/dog.jpg";
 	final String SKULL_ICON_PATH = "resources/dog.jpg";
 	final String HEAL_ICON_PATH = "resources/dog.jpg";

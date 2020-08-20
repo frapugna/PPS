@@ -19,7 +19,7 @@ public class MainCharacterCard extends JPanel{
 	
 	final Rectangle HP_RECT = new Rectangle(35, 160, 40, 30);
 	final Rectangle HP_ICON_RECT = new Rectangle(5, 160, 30, 30);
-	final String HP_ICON_PATH = "resources/dog.jpg";
+	final String HP_ICON_PATH = "resources/cardIcons/heartIcon.png";
 	
 	final Rectangle DURABILITY_RECT = new Rectangle(105, 160, 40, 30);
 	final Rectangle DURABILITY_ICON_RECT = new Rectangle(75, 160, 30, 30);
