@@ -1,5 +1,6 @@
 package _GUI;
 
+import java.awt.Font;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
@@ -19,13 +20,13 @@ public class CharacterCard extends Card{
 	
 	private static final long serialVersionUID = 1L;
 	
-	final Rectangle STATUS_RECT = new Rectangle(35, 160, 70, 30);
+	final Rectangle STATUS_RECT = new Rectangle(35, 165, 70, 30);
 	final Rectangle STATUS_ICON_RECT = new Rectangle(5, 160, 30, 30);
 	final String HEART_ICON_PATH = "resources/cardIcons/heartIcon.png";
-	final String SWORD_ICON_PATH = "resources/dog.jpg";
-	final String SKULL_ICON_PATH = "resources/dog.jpg";
-	final String HEAL_ICON_PATH = "resources/dog.jpg";
-	final String REPAIR_ICON_PATH = "resources/dog.jpg";
+	final String SWORD_ICON_PATH = "resources/cardIcons/swordIconResized.png";
+	final String SKULL_ICON_PATH = "resources/cardIcons/skullIconResized.png";
+	final String HEAL_ICON_PATH = "resources/cardIcons/hpUpIconResized.png";
+	final String REPAIR_ICON_PATH = "resources/cardIcons/durabilityUpIconResized.png";
 	int leftValue;
 	JLabel status;
 	JLabel statusIcon;
@@ -82,6 +83,7 @@ public class CharacterCard extends Card{
 			this.add(statusIcon);
 			statusIcon.setBounds(STATUS_ICON_RECT);
 		}
+		status.setFont(new Font("Calibri",Font.BOLD,20));
 		
 	}
 

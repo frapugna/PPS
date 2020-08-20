@@ -31,7 +31,7 @@ public class CardDeck {
 		
 		minionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		minionList.add(new MinionData("resources/cardIcons/skeletonResized.jpg", "Skeleton", 6));	
+		minionList.add(new MinionData("resources/cardIcons/skeletonResized.png", "Skeleton", 6));	
 		
 		
 	
@@ -43,7 +43,7 @@ public class CardDeck {
 		
 		repairPotionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		repairPotionList.add(new RepairPotionData("resources/cardIcons/BlueRepairPotionResized.jpg", "BlueMediumRP", 6));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/repairPotion1.png", "BlueMediumRP", 6));
 		
 
 		
@@ -56,7 +56,7 @@ public class CardDeck {
 		weaponList = new ArrayList<AbstractCardData>();
 		//add card data here
 		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 4));	
-		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.jpg", "LaserGun", 10));	
+		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 10));	
 	
 		
 		goodCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
