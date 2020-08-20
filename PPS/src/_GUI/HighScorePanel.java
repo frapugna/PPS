@@ -20,7 +20,7 @@ public class HighScorePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	final Rectangle MENU_RECT = new Rectangle(390, 650, 80, 50);
-	final Rectangle TEXT_RECT = new Rectangle (150, 30, 300, 50);
+	final Rectangle TEXT_RECT = new Rectangle (150, 30, 300, 65);
 	
 	JLabel hsText;
 	JFrame parent;
