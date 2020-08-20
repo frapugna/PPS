@@ -31,32 +31,33 @@ public class CardDeck {
 		
 		minionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		minionList.add(new MinionData("resources/cardIcons/skeletonResized.png", "Skeleton", 6));	
+		minionList.add(new MinionData("resources/cardIcons/goblin1.png", "Goblin", 3));	
+		minionList.add(new MinionData("resources/cardIcons/skeletonResized.png", "Skeleton", 4));
+		minionList.add(new MinionData("resources/cardIcons/trollFico1.png", "Troll", 5));	
 		
-		
-	
 		potionList = new ArrayList<AbstractCardData>();
-
 		//add card data here
-		potionList.add(new PotionData("resources/cardIcons/mediumPotionResized.png", "MediumPotion", 12));	
-		
+		potionList.add(new PotionData("resources/cardIcons/potion2.png", "SmallPotion", 2));
+		potionList.add(new PotionData("resources/cardIcons/mediumPotionResized.png", "MediumPotion", 3));	
+		potionList.add(new PotionData("resources/cardIcons/rainbowPotion.png", "RainbowPotion", 5));	
 		
 		repairPotionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		repairPotionList.add(new RepairPotionData("resources/cardIcons/repairPotion1.png", "BlueMediumRP", 6));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/repairPotion1.png", "BlueMediumRP", 2));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/yellowPotion.png", "BlueMediumRP", 3));
 		
-
 		
 		trapList = new ArrayList<AbstractCardData>();
 		//add card data here
-		trapList.add(new TrapData("resources/cardIcons/mimicResized.png", "Mimic", 6));	
-		
+		trapList.add(new TrapData("resources/cardIcons/mimic.png", "Mimic", 6));	
+		trapList.add(new TrapData("resources/cardIcons/yellowPotion.png", "Mimic", 2));	
 	
 		
 		weaponList = new ArrayList<AbstractCardData>();
 		//add card data here
-		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 4));	
-		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 10));	
+		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 2));	
+		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 6));	
+		weaponList.add(new WeaponData("resources/cardIcons/goldenShield.png", "GoldenShield", 3));	
 	
 		
 		goodCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
