@@ -1,6 +1,10 @@
 package _GUI;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -8,7 +12,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -49,20 +52,46 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	int score;
 
+	Image img;
+	
+	final String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground.jpg";
 	public CardGrid(GamePanel parent, MainCharacterCard mainCharacter) {
 
 		super();
 		this.parent = parent;
+		this.setBackground();
 		this.setLayout(null);
-
+		
 		isMoveFinished = true;
 		score = 0;
 
 		this.mainCharacter = mainCharacter;
 
 		initCardMatrix();
+		
 	}
+	
+	public void setBackground() {
+	    img = Toolkit.getDefaultToolkit().createImage(BACKGROUND_PATH);
+	    loadImage(img);
+	  }
 
+	protected void paintComponent(Graphics g) {
+	    setOpaque(false);
+	    g.drawImage(img, 0, 0, null);
+	    super.paintComponent(g);
+	  }
+	
+	  private void loadImage(Image img) {
+	    try {
+	      MediaTracker track = new MediaTracker(this);
+	      track.addImage(img, 0);
+	      track.waitForID(0);
+	    } catch (InterruptedException e) {
+	      e.printStackTrace();
+	    }
+	  }
+	  
 	private void initCardMatrix() {
 
 		cardMatrix = new CharacterCard[3][3];
