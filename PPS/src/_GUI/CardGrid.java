@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import DataAccess.HighScoreSaver;
 import domainClasses.MinionData;
 import domainClasses.PotionData;
 import domainClasses.RepairPotionData;
@@ -293,7 +294,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 
 				mainCharacter.setLocation(xPixel,yPixel );
-				System.out.println("MovingMainCharacter");
+				//System.out.println("MovingMainCharacter");
 				if(yPixel == yEnd * MainCharacterCard.HEIGHT) {
 					if(yStart == 0) {
 						isMoveFinished = true;
@@ -318,7 +319,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 				if(keepMoving == true) {
 					card.setLocation(xPixel,yPixel );
-					System.out.println("MovingCharacter");
+					//System.out.println("MovingCharacter");
 					if(yPixel == yNew * CharacterCard.HEIGHT) {
 						isMoveFinished = true;
 						addCard(x,yOld);
@@ -366,7 +367,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 				mainCharacter.setBounds(xPixel, yPixel, MainCharacterCard.WIDTH, MainCharacterCard.HEIGHT);
 				//mainCharacter.setLocation(xPixel,yPixel );
 
-				System.out.println("MovingMainCharacter");
+				//System.out.println("MovingMainCharacter");
 				if(yPixel == yEnd * MainCharacterCard.HEIGHT) {
 					if(yStart == 2) {
 						isMoveFinished = true;
@@ -391,7 +392,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 				if(keepMoving == true) {
 					card.setLocation(xPixel,yPixel );
-					System.out.println("MovingCharacter");
+					//System.out.println("MovingCharacter");
 					if(yPixel == yNew * CharacterCard.HEIGHT) {
 						isMoveFinished = true;
 						addCard(xOld,yOld);
@@ -436,7 +437,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 
 				mainCharacter.setLocation(xPixel,yPixel );
-				System.out.println("MovingMainCharacter");
+				//System.out.println("MovingMainCharacter");
 				if(xPixel == xEnd * MainCharacterCard.WIDTH) {
 					if(xStart == 2) {
 						isMoveFinished = true;
@@ -461,7 +462,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 				if(keepMoving == true) {
 					card.setLocation(xPixel,yPixel );
-					System.out.println("MovingCharacter");
+					//System.out.println("MovingCharacter");
 					if(xPixel == xNew * CharacterCard.WIDTH) {
 						isMoveFinished = true;
 						addCard(xOld,yOld);
@@ -506,7 +507,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 
 				mainCharacter.setLocation(xPixel,yPixel );
-				System.out.println("MovingMainCharacter");
+				//System.out.println("MovingMainCharacter");
 				if(xPixel == xEnd * MainCharacterCard.WIDTH) {
 					if(xStart == 0) {
 						isMoveFinished = true;
@@ -531,7 +532,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent e) {
 				if(keepMoving == true) {
 					card.setLocation(xPixel,yPixel );
-					System.out.println("MovingCharacter");
+					//System.out.println("MovingCharacter");
 					if(xPixel == xNew * CharacterCard.WIDTH) {
 						isMoveFinished = true;
 						addCard(xOld,yOld);
@@ -572,6 +573,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	private void gameOver() {
 		if(isAlive == false) {
 			JOptionPane.showMessageDialog(this, "GAME OVER");
+			new HighScoreSaver(score);
 			parent.parent.initMainPanel();
 		}
 	}
