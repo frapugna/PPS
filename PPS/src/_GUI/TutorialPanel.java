@@ -38,10 +38,7 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	int currentSlideIndex;
 	
 	/*
-	 * This panel works by using a grid 3x3 and it adds empty
-	 * JPanels where it needs an empty space(UGLY)
-	 * NEEDS restyle of buttons (with GridBagLayout ;))and resizing of pictures
-	 * After that should be complete
+	 * Handles slideShow
 	 */
 	public TutorialPanel(JFrame parent){
 		

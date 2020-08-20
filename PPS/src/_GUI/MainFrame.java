@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 /*
- * First and only frame of the apps
+ * First and only frame of the app
  * Starts with the MainPanel and switches between panels
  * Also listens to MainPanel's buttons and returntomenu buttons of the other panels
  * (Other buttons are handled by their parent component)
@@ -17,15 +17,21 @@ public class MainFrame extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	//Frame dimension
+	final int FRAME_WIDTH = 1000, FRAME_HEIGHT = 500;
+	
+	//Frame attributes
 	public JFrame mainFrame;
 	public String windowTitle;
-	final int FRAME_WIDTH = 1000, FRAME_HEIGHT = 500;
+	
+	//Panels handled
 	public MainPanel mainPanel;
 	public GamePanel gamePanel;
 	public CharacterSelectionPanel characterSelectionPanel;
 	public HighScorePanel highScorePanel;
 	public TutorialPanel tutorialPanel;
 
+	//Constructor, initializes frame and attaches MainPanel
 	public MainFrame() {
 		
 		windowTitle = "Excore";
@@ -46,36 +52,27 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(mainFrame.getContentPane() == mainPanel) {
-				
+			
 			if(e.getSource() == mainPanel.playButton) {
-				
 				characterSelectionPanel = new CharacterSelectionPanel(this);
 				changePaneTo(characterSelectionPanel);
-				//!!!!gamePanel.returnToMenu.addActionListener(this);
-				
 			}
-			else if(e.getSource() == mainPanel.highScoreButton) {
-				
+			else if(e.getSource() == mainPanel.highScoreButton) {	
 				highScorePanel = new HighScorePanel(this);
 				changePaneTo(highScorePanel);
 				highScorePanel.returnToMenu.addActionListener(this);
-				
 			}
 			else if(e.getSource() == mainPanel.tutorialButton) {
-			
 				tutorialPanel = new TutorialPanel(this);
 				changePaneTo(tutorialPanel);
 				tutorialPanel.returnToMenu.addActionListener(this);
-			
 			}
 			
 		}
-		
 		else if(mainFrame.getContentPane() == highScorePanel) {
 			if(e.getSource() == highScorePanel.returnToMenu) 
 				initMainPanel();
 		}
-		
 		else if(mainFrame.getContentPane() == tutorialPanel) {
 			if(e.getSource() == tutorialPanel.returnToMenu) 
 				initMainPanel();
@@ -90,7 +87,6 @@ public class MainFrame extends JFrame implements ActionListener {
 	 * (nonetheless it works now)
 	 */
 	public void initMainPanel() {
-		
 		
 		mainPanel = new MainPanel(mainFrame);
 		
@@ -108,7 +104,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	/*
-	 * Method to set any custom panel as the contentPane* 
+	 * Method to set any custom panel as the contentPane 
 	 */
 	public <T extends JPanel> void changePaneTo(T panel) {
 		
@@ -119,7 +115,6 @@ public class MainFrame extends JFrame implements ActionListener {
 			mainFrame.setSize(720, 660);
 		if(panel instanceof CharacterSelectionPanel)
 			mainFrame.setSize(530, 280);
-		
 		
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.repaint();
