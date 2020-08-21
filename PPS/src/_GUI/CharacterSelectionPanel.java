@@ -32,7 +32,7 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 	MainCharacterCard archer;
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/characterSelectionBackGround.jpg";
 	
 	public CharacterSelectionPanel(MainFrame parent) {
 		super();
@@ -64,6 +64,7 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 		this.add(selectionLabel);
 		selectionLabel.setFont(new Font("Calibri", Font.BOLD, 20));
 		selectionLabel.setBounds(180, 5, 200, 30);
+		selectionLabel.setForeground(Color.white);
 		
 	}
 

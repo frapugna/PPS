@@ -1,5 +1,6 @@
 package _GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -45,7 +46,7 @@ public class MainCharacterCard extends JPanel{
 	JLabel durabilityIcon;
 
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/mainCharacterbground.jpg";
 
 	public MainCharacterCard(int xCoor, int yCoor, MainCharacterData data) {
 		super();
@@ -85,6 +86,8 @@ public class MainCharacterCard extends JPanel{
 
 		durabilityLabel.setFont(new Font("Calibri",Font.BOLD,20));
 		hpLabel.setFont(new Font("Calibri",Font.BOLD,20));
+		hpLabel.setForeground(Color.white);
+		durabilityLabel.setForeground(Color.white);
 	}
 
 	public void setBackground() {

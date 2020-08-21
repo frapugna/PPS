@@ -69,6 +69,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 		initCardMatrix();
 		
+	
 	}
 	
 	public void setBackground() {
