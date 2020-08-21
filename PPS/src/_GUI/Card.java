@@ -32,7 +32,7 @@ public abstract class Card extends JPanel{
 	AbstractCardData cardType;
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/cardFront.png";
 	
 	public Card(int xCoor, int yCoor) {
 		super();
