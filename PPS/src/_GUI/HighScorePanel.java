@@ -97,15 +97,16 @@ public class HighScorePanel extends JPanel{
 
 			int score = rs.getInt(2);
 			String user = rs.getString(3);
-			String text = (cnt + 1) + "      " + user + " : " + score;
-			hsValues[cnt] = new JLabel(text);
+			if(user.compareTo("null") != 0) {
+				String text = (cnt + 1) + "      " + user + " : " + score;
+				hsValues[cnt] = new JLabel(text);
 
-			add(hsValues[cnt]);
-			hsValues[cnt].setFont(new Font("Calibri", Font.BOLD, 30));
-			hsValues[cnt].setBounds(30, 100 + cnt * 50, 400, 30);
+				add(hsValues[cnt]);
+				hsValues[cnt].setFont(new Font("Calibri", Font.BOLD, 30));
+				hsValues[cnt].setBounds(30, 100 + cnt * 50, 400, 30);
 
-			++cnt;
-
+				++cnt;
+			}
 		}
 	}
 }
