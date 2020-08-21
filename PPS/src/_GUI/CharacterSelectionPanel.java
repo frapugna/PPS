@@ -2,6 +2,10 @@ package _GUI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -27,11 +31,14 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 	MainCharacterCard warrior;
 	MainCharacterCard archer;
 	
+	Image img;
+	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
 	
 	public CharacterSelectionPanel(MainFrame parent) {
 		super();
 		this.parent = parent;
 		this.setLayout(null);
+		setBackground();
 		
 		charactersList = new MainCharactersList();
 		
@@ -60,6 +67,27 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 		
 	}
 
+	public void setBackground() {
+	    img = Toolkit.getDefaultToolkit().createImage(BACKGROUND_PATH);
+	    loadImage(img);
+	  }
+
+	protected void paintComponent(Graphics g) {
+	    setOpaque(false);
+	    g.drawImage(img, 0, 0, null);
+	    super.paintComponent(g);
+	  }
+	
+	  private void loadImage(Image img) {
+	    try {
+	      MediaTracker track = new MediaTracker(this);
+	      track.addImage(img, 0);
+	      track.waitForID(0);
+	    } catch (InterruptedException e) {
+	      e.printStackTrace();
+	    }
+	  }
+	  
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource() == berzerker) {

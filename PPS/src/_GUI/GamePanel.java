@@ -2,6 +2,9 @@ package _GUI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -32,12 +35,16 @@ public class GamePanel extends JPanel implements ActionListener{
 	final Rectangle CARD_GRID_RECT = new Rectangle(10, 10, 450, 600);
 	final Rectangle SCORE_RECT = new Rectangle(490, 10,200,100);
 	
+	Image img;
+	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	
 	public GamePanel(MainFrame parent, MainCharacterCard mainCharacter) {
 		
 		super();
 		this.parent = parent;
 		
 		this.setLayout(null);
+		setBackground();
 		
 		returnToMenu = new JButton("Menu");
 		returnToMenu.setBounds(MENU_RECT);
@@ -57,6 +64,27 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 	}
 	
+	public void setBackground() {
+	    img = Toolkit.getDefaultToolkit().createImage(BACKGROUND_PATH);
+	    loadImage(img);
+	  }
+
+	protected void paintComponent(Graphics g) {
+	    setOpaque(false);
+	    g.drawImage(img, 0, 0, null);
+	    super.paintComponent(g);
+	  }
+	
+	  private void loadImage(Image img) {
+	    try {
+	      MediaTracker track = new MediaTracker(this);
+	      track.addImage(img, 0);
+	      track.waitForID(0);
+	    } catch (InterruptedException e) {
+	      e.printStackTrace();
+	    }
+	  }
+	  
 	public JLabel getScoreLabel() {
 		return scoreLabel;
 	}

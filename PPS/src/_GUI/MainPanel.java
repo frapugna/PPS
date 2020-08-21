@@ -1,8 +1,12 @@
 package _GUI;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,12 +27,18 @@ public class MainPanel extends JPanel{
 	JButton playButton;
 	JButton highScoreButton;
 	JButton tutorialButton;
+	
+	Image img;
+	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	
 	/*
 	 * Constructor which create the panel using a GridBagLayout
 	 */
 	public MainPanel(JFrame parent) {
 		
 		super();
+		
+		this.setBackground();
 		
 		this.parent = parent;
 
@@ -57,6 +67,27 @@ public class MainPanel extends JPanel{
 		gbc.anchor = GridBagConstraints.SOUTH;
 		this.add(this.tutorialButton, gbc);
 		
+	}
+	
+	public void setBackground() {
+		img = Toolkit.getDefaultToolkit().createImage(BACKGROUND_PATH);
+		loadImage(img);
+	}
+
+	protected void paintComponent(Graphics g) {
+		setOpaque(false);
+		g.drawImage(img, 0, 0, null);
+		super.paintComponent(g);
+	}
+
+	private void loadImage(Image img) {
+		try {
+			MediaTracker track = new MediaTracker(this);
+			track.addImage(img, 0);
+			track.waitForID(0);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

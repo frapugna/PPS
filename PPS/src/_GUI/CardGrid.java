@@ -53,8 +53,8 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	int score;
 
 	Image img;
-	
 	final String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	
 	public CardGrid(GamePanel parent, MainCharacterCard mainCharacter) {
 
 		super();
@@ -214,7 +214,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			mainCharacter.setWeaponDurability(cardMatrix[y][x].getLeftValue());
 			mainCharacter.getDurabilityLabel().setText(":"+mainCharacter.getWeaponDurability());
 		}
-		else
+		else 
 			if(cardMatrix[y][x].getCardType() instanceof PotionData) {
 				int tmpHp = mainCharacter.getHp();
 				tmpHp += cardMatrix[y][x].getLeftValue();

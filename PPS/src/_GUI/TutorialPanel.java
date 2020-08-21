@@ -1,6 +1,10 @@
 package _GUI;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,6 +41,9 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	
 	int currentSlideIndex;
 	
+	Image img;
+	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	
 	/*
 	 * Handles slideShow
 	 */
@@ -45,6 +52,7 @@ public class TutorialPanel extends JPanel implements ActionListener{
 		super();
 		this.parent = parent;
 		this.setLayout(null);
+		this.setBackground();
 		
 		slideTotalNumber = 2;
 		this.tutorialSlideShow = new ImageIcon[slideTotalNumber];
@@ -117,6 +125,27 @@ public class TutorialPanel extends JPanel implements ActionListener{
 				}
 			else 
 				returnToMenu.doClick();
+		}
+	}
+	
+	public void setBackground() {
+		img = Toolkit.getDefaultToolkit().createImage(BACKGROUND_PATH);
+		loadImage(img);
+	}
+
+	protected void paintComponent(Graphics g) {
+		setOpaque(false);
+		g.drawImage(img, 0, 0, null);
+		super.paintComponent(g);
+	}
+
+	private void loadImage(Image img) {
+		try {
+			MediaTracker track = new MediaTracker(this);
+			track.addImage(img, 0);
+			track.waitForID(0);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 	
