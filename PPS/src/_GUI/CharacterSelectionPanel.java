@@ -66,6 +66,7 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 		selectionLabel.setBounds(180, 5, 200, 30);
 		selectionLabel.setForeground(Color.white);
 		
+		updateCharacterBorders();
 	}
 
 	public void setBackground() {
