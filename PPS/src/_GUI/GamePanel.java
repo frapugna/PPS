@@ -55,6 +55,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		add(scoreLabel);
 		scoreLabel.setFont(new Font("Calibri", Font.BOLD, 30));
 		scoreLabel.setBounds(SCORE_RECT);
+		scoreLabel.setForeground(Color.white);
 		
 		cardGrid = new CardGrid(this, mainCharacter);
 		cardGrid.setBounds(CARD_GRID_RECT);
@@ -101,6 +102,8 @@ public class GamePanel extends JPanel implements ActionListener{
 			if(choice == JOptionPane.YES_OPTION) {
 				parent.initMainPanel();
 			}
+			else
+				parent.requestFocusInWindow();
 		}
 	} 	
 }

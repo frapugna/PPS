@@ -72,10 +72,9 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		
 		initCardMatrix();
 	
-		parent.setFocusable(true);
-		parent.addKeyListener(this);
-		parent.requestFocusInWindow();
-		parent.parent.setVisible(true);
+		parent.parent.setFocusable(true);
+		parent.parent.addKeyListener(this);
+		parent.parent.requestFocusInWindow();
 
 	}
 	
@@ -695,7 +694,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("KeyTyped");
+		return;
 	}
 
 	@Override
@@ -721,7 +720,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			}
 		if(isClickable(x, y))
 			cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
-		System.out.println("KeyPressed");
+
 	}
 
 	@Override
@@ -756,8 +755,6 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			}
 		}
 		
-		
-		System.out.println("KeyReleased");
 	}
 
 

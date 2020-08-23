@@ -1,5 +1,6 @@
 package _GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -36,7 +37,7 @@ public class HighScorePanel extends JPanel{
 	String retrievingQuery = "SELECT * FROM ScoreTable ORDER BY 2 DESC LIMIT 10;";
 
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/highScorePanelBackground.jpg";
 
 	public HighScorePanel(JFrame parent) {
 
@@ -55,6 +56,7 @@ public class HighScorePanel extends JPanel{
 		this.add(hsText);
 		hsText.setFont(new Font("Calibri", Font.BOLD, 50));
 		this.hsText.setBounds(TEXT_RECT);
+		hsText.setForeground(Color.YELLOW);
 
 		try {
 			initLabelVector();
