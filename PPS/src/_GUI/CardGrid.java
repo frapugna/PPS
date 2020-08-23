@@ -75,7 +75,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 		parent.parent.setFocusable(true);
 		parent.parent.addKeyListener(this);
 		parent.parent.requestFocusInWindow();
-
+		
 	}
 	
 	public void setBackground() {
@@ -612,6 +612,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	private void gameOver() {
 		if(isAlive == false) {
+			parent.parent.removeKeyListener(this);
 			JOptionPane.showMessageDialog(this, "GAME OVER");
 			new HighScoreSaver(score);
 			parent.parent.initMainPanel();
@@ -725,6 +726,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		System.out.println("KeyReleased");
 		int x = 0;
 		int y = 0;
 		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {

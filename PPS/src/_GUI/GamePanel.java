@@ -100,6 +100,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			int choice = JOptionPane.showConfirmDialog(null, "Go back to main menu?", "Are you sure?", JOptionPane.YES_NO_OPTION);
 			
 			if(choice == JOptionPane.YES_OPTION) {
+				parent.removeKeyListener(cardGrid);
 				parent.initMainPanel();
 			}
 			else
