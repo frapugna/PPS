@@ -57,7 +57,6 @@ public class GamePanel extends JPanel implements ActionListener{
 		scoreLabel.setBounds(SCORE_RECT);
 		
 		cardGrid = new CardGrid(this, mainCharacter);
-
 		cardGrid.setBounds(CARD_GRID_RECT);
 		cardGrid.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 		add(cardGrid);

@@ -56,6 +56,8 @@ public class MainFrame extends JFrame implements ActionListener {
 			if(e.getSource() == mainPanel.playButton) {
 				characterSelectionPanel = new CharacterSelectionPanel(this);
 				changePaneTo(characterSelectionPanel);
+				//
+				//
 			}
 			else if(e.getSource() == mainPanel.highScoreButton) {	
 				highScorePanel = new HighScorePanel(this);
@@ -112,7 +114,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		mainFrame.getContentPane().removeAll();
 		mainFrame.setContentPane(panel);
 		
-		if(panel instanceof GamePanel)
+		if(panel instanceof GamePanel) 
 			mainFrame.setSize(720, 660);
 		if(panel instanceof CharacterSelectionPanel)
 			mainFrame.setSize(530, 280);
