@@ -1,5 +1,6 @@
 package _GUI;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -25,24 +26,24 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	JFrame parent;
 	
 	JButton returnToMenu;
-	final Rectangle MENU_RECT = new Rectangle(870, 20, 80, 50);
+	final Rectangle MENU_RECT = new Rectangle(600, 720, 100, 45);
 	
 	JButton nextSlide; 
-	final Rectangle NEXT_RECT = new Rectangle(870, 350, 80, 50);
+	final Rectangle NEXT_RECT = new Rectangle(1150, 720, 100, 45);
 	
 	JButton previousSlide;
-	final Rectangle PREVIOUS_RECT = new Rectangle(30, 350, 80, 50);
+	final Rectangle PREVIOUS_RECT = new Rectangle(20, 720, 100, 45);
 	
 	ImageIcon[] tutorialSlideShow;
-	int slideTotalNumber;
+	int slideTotalNumber = 5;
 	
 	JLabel currentSlide;
-	final Rectangle SLIDE_RECT = new Rectangle(150, 50, 650, 350);
+	final Rectangle SLIDE_RECT = new Rectangle(0, 0, 1280, 720);
 	
 	int currentSlideIndex;
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/Tutorial/tutorialBackground.png";
 	
 	/*
 	 * Handles slideShow
@@ -54,7 +55,6 @@ public class TutorialPanel extends JPanel implements ActionListener{
 		this.setLayout(null);
 		this.setBackground();
 		
-		slideTotalNumber = 2;
 		this.tutorialSlideShow = new ImageIcon[slideTotalNumber];
 		this.initSlideShow();
 		
@@ -88,8 +88,11 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	 */
 	public void initSlideShow() {
 			
-			tutorialSlideShow[0] = new ImageIcon("resources/firstSlide.png");
-			tutorialSlideShow[1] = new ImageIcon("resources/secondSlide.png");
+			tutorialSlideShow[0] = new ImageIcon("resources/Tutorial/Diapositiva1.PNG");
+			tutorialSlideShow[1] = new ImageIcon("resources/Tutorial/Diapositiva2.PNG");
+			tutorialSlideShow[2] = new ImageIcon("resources/Tutorial/Diapositiva3.PNG");
+			tutorialSlideShow[3] = new ImageIcon("resources/Tutorial/Diapositiva4.PNG");
+			tutorialSlideShow[4] = new ImageIcon("resources/Tutorial/Diapositiva5.PNG");
 		
 	}
 
