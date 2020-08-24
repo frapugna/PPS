@@ -78,10 +78,3 @@ public class Dealer {
 	}
 
 }
-
-
-
-
-
-
-
