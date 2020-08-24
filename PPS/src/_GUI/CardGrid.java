@@ -7,6 +7,8 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -23,7 +25,7 @@ import domainClasses.RepairPotionData;
 import domainClasses.TrapData;
 import domainClasses.WeaponData;
 
-public class CardGrid extends JPanel implements MouseListener, MouseMotionListener{
+public class CardGrid extends JPanel implements MouseListener, MouseMotionListener, KeyListener{
 
 	private static final long serialVersionUID = 1L;
 	final int SPEED = 2;
@@ -58,16 +60,21 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	public CardGrid(GamePanel parent, MainCharacterCard mainCharacter) {
 
 		super();
+	
 		this.parent = parent;
 		this.setBackground();
 		this.setLayout(null);
 		
 		isMoveFinished = true;
 		score = 0;
-
+		
 		this.mainCharacter = mainCharacter;
-
+		
 		initCardMatrix();
+	
+		parent.parent.setFocusable(true);
+		parent.parent.addKeyListener(this);
+		parent.parent.requestFocusInWindow();
 		
 	}
 	
@@ -105,12 +112,16 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 				cardMatrix[y][x].setLocation(x * CharacterCard.WIDTH, y * CharacterCard.HEIGHT);
 				cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 				this.add(cardMatrix[y][x]);
-
+		
 				cardMatrix[y][x].addMouseListener(this);
 				cardMatrix[y][x].addMouseMotionListener(this);
 
 			}
 		}
+		this.addKeyListener(this);
+		this.setFocusable(true);
+		this.requestFocus();
+		requestFocusInWindow();
 		setClickableBorder();
 	}
 
@@ -601,6 +612,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	 */
 	private void gameOver() {
 		if(isAlive == false) {
+			parent.parent.removeKeyListener(this);
 			JOptionPane.showMessageDialog(this, "GAME OVER");
 			new HighScoreSaver(score);
 			parent.parent.initMainPanel();
@@ -679,6 +691,72 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 			}
 		}
 
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		return;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int x = 0;
+		int y = 0;
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			y = yMain;
+			x = xMain + 1;
+		}
+		else
+			if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+				y = yMain;
+				x = xMain - 1;
+			}
+			else if(e.getKeyCode()==KeyEvent.VK_UP) {
+				y = yMain - 1;
+				x = xMain;
+			}
+			else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+				y = yMain + 1;
+				x = xMain;
+			}
+		if(isClickable(x, y))
+			cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		System.out.println("KeyReleased");
+		int x = 0;
+		int y = 0;
+		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			y = yMain;
+			x = xMain + 1;
+		}
+		else
+			if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+				y = yMain;
+				x = xMain - 1;
+			}
+			else if(e.getKeyCode()==KeyEvent.VK_UP) {
+				y = yMain - 1;
+				x = xMain;
+			}
+			else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+				y = yMain + 1;
+				x = xMain;
+			}
+		
+		if(isClickable(x, y)) {
+			boolean isMoveEnabled = moveSet(x,y);
+			gameOver();
+			if(isMoveEnabled) {
+				++score;
+				parent.getScoreLabel().setText("Score: "+score);
+				moveCard(x,y);
+			}
+		}
+		
 	}
 
 

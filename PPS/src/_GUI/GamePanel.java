@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	final Rectangle SCORE_RECT = new Rectangle(490, 10,200,100);
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/gamePanelBackground.png";
 	
 	public GamePanel(MainFrame parent, MainCharacterCard mainCharacter) {
 		
@@ -55,9 +55,9 @@ public class GamePanel extends JPanel implements ActionListener{
 		add(scoreLabel);
 		scoreLabel.setFont(new Font("Calibri", Font.BOLD, 30));
 		scoreLabel.setBounds(SCORE_RECT);
+		scoreLabel.setForeground(Color.white);
 		
 		cardGrid = new CardGrid(this, mainCharacter);
-
 		cardGrid.setBounds(CARD_GRID_RECT);
 		cardGrid.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 		add(cardGrid);
@@ -100,8 +100,11 @@ public class GamePanel extends JPanel implements ActionListener{
 			int choice = JOptionPane.showConfirmDialog(null, "Go back to main menu?", "Are you sure?", JOptionPane.YES_NO_OPTION);
 			
 			if(choice == JOptionPane.YES_OPTION) {
+				parent.removeKeyListener(cardGrid);
 				parent.initMainPanel();
 			}
+			else
+				parent.requestFocusInWindow();
 		}
 	} 	
 }

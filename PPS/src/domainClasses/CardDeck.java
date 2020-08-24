@@ -31,6 +31,7 @@ public class CardDeck {
 		
 		minionList = new ArrayList<AbstractCardData>();
 		//add card data here
+		minionList.add(new MinionData("resources/cardIcons/fireSkull.png", "FireSkull", 2));
 		minionList.add(new MinionData("resources/cardIcons/goblin1.png", "Goblin", 3));	
 		minionList.add(new MinionData("resources/cardIcons/skeletonResized.png", "Skeleton", 4));
 		minionList.add(new MinionData("resources/cardIcons/trollFico1.png", "Troll", 5));	

@@ -32,7 +32,7 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 	MainCharacterCard archer;
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/characterSelectionBackGround.jpg";
 	
 	public CharacterSelectionPanel(MainFrame parent) {
 		super();
@@ -64,7 +64,9 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 		this.add(selectionLabel);
 		selectionLabel.setFont(new Font("Calibri", Font.BOLD, 20));
 		selectionLabel.setBounds(180, 5, 200, 30);
+		selectionLabel.setForeground(Color.white);
 		
+		updateCharacterBorders();
 	}
 
 	public void setBackground() {
@@ -90,15 +92,20 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 	  
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e.getSource() == berzerker) {
-			parent.changePaneTo(new GamePanel(parent, berzerker));
-		}
-		
+		return;
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == berzerker) {
+			berzerker.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+		}
+		if(e.getSource() == warrior) {
+			warrior.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+		}
+		if(e.getSource() == archer) {
+			archer.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
+		}
 	}
 
 	@Override
@@ -117,19 +124,19 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
 		
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		return;
 		
 	}
 

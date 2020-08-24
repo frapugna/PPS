@@ -29,7 +29,7 @@ public class MainPanel extends JPanel{
 	JButton tutorialButton;
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	String BACKGROUND_PATH = "resources/cardIcons/MainPanelBackground.jpg";
 	
 	/*
 	 * Constructor which create the panel using a GridBagLayout

@@ -19,12 +19,14 @@ public class MainFrame extends JFrame implements ActionListener {
 	
 	//Frame dimension
 	final int FRAME_WIDTH = 1000, FRAME_HEIGHT = 500;
-	
+	static final String WINDOW_TITLE = "CardVenture";
+	/*
 	//Frame attributes
 	public JFrame mainFrame;
 	public String windowTitle;
-	
+	*/
 	//Panels handled
+	public StartingPanel startingPanel;
 	public MainPanel mainPanel;
 	public GamePanel gamePanel;
 	public CharacterSelectionPanel characterSelectionPanel;
@@ -33,14 +35,12 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	//Constructor, initializes frame and attaches MainPanel
 	public MainFrame() {
-		
-		windowTitle = "Excore";
-		mainFrame = new JFrame(windowTitle);
-		
- 		mainFrame.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
-		
- 		initMainPanel();
-		
+		super(WINDOW_TITLE);
+	
+ 		this.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
+		//
+ 		initStartingPanel();
+		//
 	}
 
 	/*
@@ -51,7 +51,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(mainFrame.getContentPane() == mainPanel) {
+		if(this.getContentPane() == mainPanel) {
 			
 			if(e.getSource() == mainPanel.playButton) {
 				characterSelectionPanel = new CharacterSelectionPanel(this);
@@ -59,7 +59,9 @@ public class MainFrame extends JFrame implements ActionListener {
 			}
 			else if(e.getSource() == mainPanel.highScoreButton) {	
 				highScorePanel = new HighScorePanel(this);
-				mainFrame.setSize(550, 800);
+				
+				this.setSize(550, 800);
+				
 				changePaneTo(highScorePanel);
 				highScorePanel.returnToMenu.addActionListener(this);
 			}
@@ -70,17 +72,32 @@ public class MainFrame extends JFrame implements ActionListener {
 			}
 			
 		}
-		else if(mainFrame.getContentPane() == highScorePanel) {
+		
+		else if(this.getContentPane() == highScorePanel) {
+			
 			if(e.getSource() == highScorePanel.returnToMenu) 
 				initMainPanel();
 		}
-		else if(mainFrame.getContentPane() == tutorialPanel) {
+		
+		else if(this.getContentPane() == tutorialPanel) {
+		
 			if(e.getSource() == tutorialPanel.returnToMenu) 
 				initMainPanel();
 		}
 		
 	}
-	
+	public void initStartingPanel() {
+		
+		startingPanel = new StartingPanel(this);
+		
+		this.setSize(1200, 694);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setContentPane(startingPanel);
+		this.setVisible(true);
+		
+	}
 	/*
 	 * Method necessary to initialize the main panel because
 	 * Swing is a little bitch and doesn't know how to save
@@ -88,19 +105,20 @@ public class MainFrame extends JFrame implements ActionListener {
 	 * (nonetheless it works now)
 	 */
 	public void initMainPanel() {
+		this.getContentPane().removeAll();
 		
-		mainPanel = new MainPanel(mainFrame);
+		mainPanel = new MainPanel(this);
 		
 		mainPanel.playButton.addActionListener(this);
 		mainPanel.highScoreButton.addActionListener(this);
 		mainPanel.tutorialButton.addActionListener(this);
 		
-		mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		mainFrame.setResizable(false);
-		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		mainFrame.setLocationRelativeTo(null);
-		mainFrame.setContentPane(mainPanel);
-		mainFrame.setVisible(true);
+		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setContentPane(mainPanel);
+		this.setVisible(true);
 		
 	}
 	
@@ -109,18 +127,18 @@ public class MainFrame extends JFrame implements ActionListener {
 	 */
 	public <T extends JPanel> void changePaneTo(T panel) {
 		
-		mainFrame.getContentPane().removeAll();
-		mainFrame.setContentPane(panel);
+		this.getContentPane().removeAll();
+		this.setContentPane(panel);
 		
-		if(panel instanceof GamePanel)
-			mainFrame.setSize(720, 660);
+		if(panel instanceof GamePanel) 
+			this.setSize(720, 660);
 		if(panel instanceof CharacterSelectionPanel)
-			mainFrame.setSize(530, 280);
+			this.setSize(530, 280);
 		
 		
-		mainFrame.setLocationRelativeTo(null);
-		mainFrame.repaint();
-		mainFrame.setVisible(true);
+		this.setLocationRelativeTo(null);
+		this.repaint();
+		this.setVisible(true);
 		
 	}
 	
