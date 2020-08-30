@@ -44,15 +44,19 @@ public class CardDeck {
 		
 		potionList = new ArrayList<AbstractCardData>();
 		//add card data here
-		potionList.add(new PotionData("resources/cardIcons/potion2.png", "SmallPotion", 2));
-		potionList.add(new PotionData("resources/cardIcons/mediumPotionResized.png", "MediumPotion", 3));	
-		potionList.add(new PotionData("resources/cardIcons/rainbowPotion.png", "RainbowPotion", 5));	
+		potionList.add(new PotionData("resources/cardIcons/basicRedPotion.png", "SmallPotion", 2));
+		potionList.add(new PotionData("resources/cardIcons/mediumPotionResized.png", "MediumPotion", 3));
+		potionList.add(new PotionData("resources/cardIcons/primaticRedPotion.png", "prismaticRedPotion", 4));
+		potionList.add(new PotionData("resources/cardIcons/redPotttttion.png", "Redpotttttion", 5));
+		potionList.add(new PotionData("resources/cardIcons/rainbowPotion.png", "RainbowPotion", 6));	
 		
 		repairPotionList = new ArrayList<AbstractCardData>();
 		//add card data here
 		repairPotionList.add(new RepairPotionData("resources/cardIcons/repairPotion1.png", "BlueMediumRP", 2));
-		repairPotionList.add(new RepairPotionData("resources/cardIcons/yellowPotion.png", "BlueMediumRP", 3));
-		repairPotionList.add(new RepairPotionData("resources/cardIcons/rp4.png", "rp4", 4));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/PotionRPP.png", "RPPPPP", 3));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/yellowPotion.png", "BlueMediumRP", 4));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/rp4.png", "rp4", 5));
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/presentRP.png", "rp6", 6));
 		
 		trapList = new ArrayList<AbstractCardData>();
 		//add card data here
@@ -67,16 +71,16 @@ public class CardDeck {
 		
 		weaponList = new ArrayList<AbstractCardData>();
 		//add card data here
-		weaponList.add(new WeaponData("resources/cardIcons/GostWoodSword.png", "AlmostAWoodSword", 1));	
-		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 2));	
-		weaponList.add(new WeaponData("resources/cardIcons/almostNewGoldenSword.png", "SpadaQuasiNuova", 3));
-		weaponList.add(new WeaponData("resources/cardIcons/shuriken.png", "Shuriken", 4));
-		weaponList.add(new WeaponData("resources/cardIcons/goldenShield.png", "GoldenShield", 5));	
-		weaponList.add(new WeaponData("resources/cardIcons/whiteBow.png", "whiteBow", 6));	
-		weaponList.add(new WeaponData("resources/cardIcons/dualQualcosa.png", "DualQualcosa", 7));
-		weaponList.add(new WeaponData("resources/cardIcons/SnowSword.png", "SnowSword", 8));
-		weaponList.add(new WeaponData("resources/cardIcons/fireSword.png", "FireSword", 9));
-		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 10));
+		weaponList.add(new WeaponData("resources/cardIcons/GostWoodSword.png", "AlmostAWoodSword", 3));	
+		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 4));	
+		weaponList.add(new WeaponData("resources/cardIcons/almostNewGoldenSword.png", "SpadaQuasiNuova", 5));
+		weaponList.add(new WeaponData("resources/cardIcons/shuriken.png", "Shuriken", 6));
+		weaponList.add(new WeaponData("resources/cardIcons/goldenShield.png", "GoldenShield", 7));	
+		weaponList.add(new WeaponData("resources/cardIcons/whiteBow.png", "whiteBow", 8));	
+		weaponList.add(new WeaponData("resources/cardIcons/dualQualcosa.png", "DualQualcosa", 9));
+		weaponList.add(new WeaponData("resources/cardIcons/SnowSword.png", "SnowSword", 10));
+		weaponList.add(new WeaponData("resources/cardIcons/fireSword.png", "FireSword", 11));
+		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 12));
 		
 		goodCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
 		
