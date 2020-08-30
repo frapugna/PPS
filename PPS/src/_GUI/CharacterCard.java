@@ -1,5 +1,6 @@
 package _GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 
@@ -84,6 +85,7 @@ public class CharacterCard extends Card{
 			statusIcon.setBounds(STATUS_ICON_RECT);
 		}
 		status.setFont(new Font("Calibri",Font.BOLD,20));
+		status.setForeground(Color.BLACK);
 		
 	}
 

@@ -106,7 +106,7 @@ public class HighScorePanel extends JPanel{
 				add(hsValues[cnt]);
 				hsValues[cnt].setFont(new Font("Calibri", Font.BOLD, 30));
 				hsValues[cnt].setBounds(30, 100 + cnt * 50, 400, 30);
-				hsValues[cnt].setForeground(Color.darkGray);
+				hsValues[cnt].setForeground(Color.cyan);
 				++cnt;
 			}
 		}
