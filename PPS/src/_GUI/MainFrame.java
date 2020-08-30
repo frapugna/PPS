@@ -3,6 +3,7 @@ package _GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,12 +24,14 @@ public class MainFrame extends JFrame implements ActionListener {
 	static final String WINDOW_TITLE = "CardVenture";
 
 	final String MUSIC_PATH = "resources/UpInMyJam.wav";
-
+	final String ICON_PATH = "resources/AppIcon/AppIcon128x128.png";
+	
 	/*
 	//Frame attributes
 	public JFrame mainFrame;
 	public String windowTitle;
 	 */
+	
 	//Panels handled
 	public StartingPanel startingPanel;
 	public MainPanel mainPanel;
@@ -42,6 +45,10 @@ public class MainFrame extends JFrame implements ActionListener {
 	public MainFrame() {
 		super(WINDOW_TITLE);
 
+		ImageIcon icon = new ImageIcon(ICON_PATH);
+		
+		setIconImage(icon.getImage());
+		
 		this.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
 		//
 		initStartingPanel();
