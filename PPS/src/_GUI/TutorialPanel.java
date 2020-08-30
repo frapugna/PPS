@@ -1,6 +1,5 @@
 package _GUI;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -26,19 +25,19 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	JFrame parent;
 	
 	JButton returnToMenu;
-	final Rectangle MENU_RECT = new Rectangle(600, 720, 100, 45);
+	final Rectangle MENU_RECT = new Rectangle(600, 640, 100, 45);
 	
 	JButton nextSlide; 
-	final Rectangle NEXT_RECT = new Rectangle(1150, 720, 100, 45);
+	final Rectangle NEXT_RECT = new Rectangle(1150, 640, 100, 45);
 	
 	JButton previousSlide;
-	final Rectangle PREVIOUS_RECT = new Rectangle(20, 720, 100, 45);
+	final Rectangle PREVIOUS_RECT = new Rectangle(20, 640, 100, 45);
 	
 	ImageIcon[] tutorialSlideShow;
 	int slideTotalNumber = 5;
 	
 	JLabel currentSlide;
-	final Rectangle SLIDE_RECT = new Rectangle(0, 0, 1280, 720);
+	final Rectangle SLIDE_RECT = new Rectangle(0, 0, 1280, 640);
 	
 	int currentSlideIndex;
 	

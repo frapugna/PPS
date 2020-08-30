@@ -55,7 +55,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 	int score;
 
 	Image img;
-	final String BACKGROUND_PATH = "resources/cardIcons/cardGridBackground2.png";
+	final String BACKGROUND_PATH = "resources/cardIcons/CDBgroungNew.jpg";
 	
 	public CardGrid(GamePanel parent, MainCharacterCard mainCharacter) {
 
