@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	final Rectangle SCORE_RECT = new Rectangle(490, 10,200,100);
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/gamePanelBackground.png";
+	String BACKGROUND_PATH = "resources/cardIcons/GPBgroundNew.jpg";
 	
 	public GamePanel(MainFrame parent, MainCharacterCard mainCharacter) {
 		

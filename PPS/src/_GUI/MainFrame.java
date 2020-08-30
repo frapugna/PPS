@@ -68,7 +68,8 @@ public class MainFrame extends JFrame implements ActionListener {
 			else if(e.getSource() == mainPanel.tutorialButton) {
 				tutorialPanel = new TutorialPanel(this);
 				
-				this.setSize(1280, 800);
+				//this.setSize(1280, 800);
+				this.setSize(1280, 725);
 				
 				changePaneTo(tutorialPanel);
 				tutorialPanel.returnToMenu.addActionListener(this);
