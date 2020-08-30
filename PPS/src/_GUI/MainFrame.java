@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import DataAccess.MusicPlayer;
+
 /*
  * First and only frame of the app
  * Starts with the MainPanel and switches between panels
