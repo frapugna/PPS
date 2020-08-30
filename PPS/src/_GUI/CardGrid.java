@@ -633,7 +633,7 @@ public class CardGrid extends JPanel implements MouseListener, MouseMotionListen
 					continue;
 				if(e.getSource() == cardMatrix[y][x]) 
 					if(isClickable(x, y))
-						cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
+						cardMatrix[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 5));
 			}
 		}
 	}

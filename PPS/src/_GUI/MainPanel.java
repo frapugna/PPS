@@ -9,6 +9,7 @@ import java.awt.MediaTracker;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,17 +21,16 @@ public class MainPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//Mute button dimension
-		static final Rectangle MUTE = new Rectangle(990, 10, 5, 5);
+
 	/*
 	 * parent: a reference to the parent frame
 	 * playButton, highScoresButton, tutorialButton: the dynamic part of the panel
 	 */
-	JFrame parent;
+	MainFrame parent;
 	JButton playButton;
 	JButton highScoreButton;
 	JButton tutorialButton;
-	JButton mute;
+	JButton pause;
 	
 	Image img;
 	String BACKGROUND_PATH = "resources/cardIcons/MainPanelBackground.jpg";
@@ -38,7 +38,7 @@ public class MainPanel extends JPanel{
 	/*
 	 * Constructor which create the panel using a GridBagLayout
 	 */
-	public MainPanel(JFrame parent) {
+	public MainPanel(MainFrame parent) {
 		
 		super();
 		
@@ -49,7 +49,11 @@ public class MainPanel extends JPanel{
 		this.playButton = new JButton("New Game");
 		this.highScoreButton = new JButton("High Score");
 		this.tutorialButton = new JButton("Tutorial");
-		this.mute = new JButton("M");
+		
+		if(parent.isMusicPlaying)
+			this.pause = new JButton(null,new ImageIcon(parent.PAUSE_MUSIC_PATH));
+		else
+			this.pause = new JButton(null,new ImageIcon(parent.PLAY_MUSIC_PATH));
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -76,7 +80,7 @@ public class MainPanel extends JPanel{
 		gbc.ipadx = 5;
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHEAST;
-		this.add(mute, gbc);
+		this.add(pause, gbc);
 	}
 	
 	public void setBackground() {

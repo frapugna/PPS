@@ -25,7 +25,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	final String MUSIC_PATH = "resources/UpInMyJam.wav";
 	final String ICON_PATH = "resources/AppIcon/AppIcon128x128.png";
-	
+	final String PLAY_MUSIC_PATH = "resources/AppIcon/playButton.png";
+	final String PAUSE_MUSIC_PATH = "resources/AppIcon/pauseMusic.png";
 	/*
 	//Frame attributes
 	public JFrame mainFrame;
@@ -40,6 +41,9 @@ public class MainFrame extends JFrame implements ActionListener {
 	public HighScorePanel highScorePanel;
 	public TutorialPanel tutorialPanel;
 	
+	//Music management stuffs
+	public MusicPlayer musicPlayer;
+	public boolean isMusicPlaying;
 
 	//Constructor, initializes frame and attaches MainPanel
 	public MainFrame() {
@@ -50,9 +54,13 @@ public class MainFrame extends JFrame implements ActionListener {
 		setIconImage(icon.getImage());
 		
 		this.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
-		//
+		
+		musicPlayer = new MusicPlayer(MUSIC_PATH);
+		musicPlayer.start();
+		isMusicPlaying = true;
+		
 		initStartingPanel();
-		//
+		
 	}
 
 	/*
@@ -76,15 +84,23 @@ public class MainFrame extends JFrame implements ActionListener {
 
 				changePaneTo(highScorePanel);
 				highScorePanel.returnToMenu.addActionListener(this);
+				highScorePanel.pause.addActionListener(this);
 			}
 			else if(e.getSource() == mainPanel.tutorialButton) {
 				tutorialPanel = new TutorialPanel(this);
-				
+				tutorialPanel.pause.addActionListener(this);
 				//this.setSize(1280, 800);
 				this.setSize(1280, 725);
 				
 				changePaneTo(tutorialPanel);
 				tutorialPanel.returnToMenu.addActionListener(this);
+			}
+			else if(e.getSource() == mainPanel.pause) {
+				this.musicControl();
+				if(isMusicPlaying)
+					mainPanel.pause.setIcon(new ImageIcon(PAUSE_MUSIC_PATH));
+				else
+					mainPanel.pause.setIcon(new ImageIcon(PLAY_MUSIC_PATH));
 			}
 
 		}
@@ -93,12 +109,44 @@ public class MainFrame extends JFrame implements ActionListener {
 
 			if(e.getSource() == highScorePanel.returnToMenu) 
 				initMainPanel();
+			else if(e.getSource() == highScorePanel.pause) {
+				this.musicControl();
+				if(isMusicPlaying)
+					highScorePanel.pause.setIcon(new ImageIcon(PAUSE_MUSIC_PATH));
+				else
+					highScorePanel.pause.setIcon(new ImageIcon(PLAY_MUSIC_PATH));
+			}
 		}
 
 		else if(this.getContentPane() == tutorialPanel) {
 
 			if(e.getSource() == tutorialPanel.returnToMenu) 
 				initMainPanel();
+			else if(e.getSource() == tutorialPanel.pause) {
+				this.musicControl();
+				if(isMusicPlaying)
+					tutorialPanel.pause.setIcon(new ImageIcon(PAUSE_MUSIC_PATH));
+				else
+					tutorialPanel.pause.setIcon(new ImageIcon(PLAY_MUSIC_PATH));
+			}
+		}
+		else if(this.getContentPane() == gamePanel) {
+			if(e.getSource() == gamePanel.pause) {
+				this.musicControl();
+				if(isMusicPlaying)
+					gamePanel.pause.setIcon(new ImageIcon(PAUSE_MUSIC_PATH));
+				else
+					gamePanel.pause.setIcon(new ImageIcon(PLAY_MUSIC_PATH));
+			}
+		}
+		else if(this.getContentPane() == characterSelectionPanel) {
+			if(e.getSource() == characterSelectionPanel.pause) {
+				this.musicControl();
+				if(isMusicPlaying)
+					characterSelectionPanel.pause.setIcon(new ImageIcon(PAUSE_MUSIC_PATH));
+				else
+					characterSelectionPanel.pause.setIcon(new ImageIcon(PLAY_MUSIC_PATH));
+			}
 		}
 
 	}
@@ -131,7 +179,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		mainPanel.playButton.addActionListener(this);
 		mainPanel.highScoreButton.addActionListener(this);
 		mainPanel.tutorialButton.addActionListener(this);
-
+		mainPanel.pause.addActionListener(this);
+		
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -160,5 +209,17 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.setVisible(true);
 
 	}
+	
+	private void musicControl() {
+		if(isMusicPlaying) {
+			musicPlayer.pause();
+			isMusicPlaying = false;
+		}
+		else {
+			musicPlayer.play();
+			isMusicPlaying = true;
+		}
+	}
+	
 
 }

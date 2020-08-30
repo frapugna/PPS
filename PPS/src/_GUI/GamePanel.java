@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,10 +24,7 @@ public class GamePanel extends JPanel implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	MainFrame parent;
-	JButton returnToMenu;
-	CardGrid cardGrid;
-	JLabel scoreLabel;
+	final String BACKGROUND_PATH = "resources/cardIcons/GPBgroundNew.jpg";
 
 	final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
 	final int SCREEN_HEIGTH = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -34,9 +32,16 @@ public class GamePanel extends JPanel implements ActionListener{
 	final Rectangle MENU_RECT = new Rectangle(490, 500, 200, 100);
 	final Rectangle CARD_GRID_RECT = new Rectangle(10, 10, 450, 600);
 	final Rectangle SCORE_RECT = new Rectangle(490, 10,200,100);
+	final Rectangle PAUSE_RECT = new Rectangle(690,5,20,20);
+	
+	MainFrame parent;
+	JButton returnToMenu;
+	CardGrid cardGrid;
+	JLabel scoreLabel;
+	JButton pause;
 	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/GPBgroundNew.jpg";
+	
 	
 	public GamePanel(MainFrame parent, MainCharacterCard mainCharacter) {
 		
@@ -45,6 +50,14 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 		this.setLayout(null);
 		setBackground();
+		
+		if(parent.isMusicPlaying)
+			this.pause = new JButton(null,new ImageIcon(parent.PAUSE_MUSIC_PATH));
+		else
+			this.pause = new JButton(null,new ImageIcon(parent.PLAY_MUSIC_PATH));
+		this.add(pause);
+		this.pause.setBounds(PAUSE_RECT);
+		this.pause.addActionListener(this);
 		
 		returnToMenu = new JButton("Menu");
 		returnToMenu.setBounds(MENU_RECT);
@@ -106,5 +119,23 @@ public class GamePanel extends JPanel implements ActionListener{
 			else
 				parent.requestFocusInWindow();
 		}
-	} 	
+		else if(e.getSource() == pause) {
+			this.musicControl();
+			if(parent.isMusicPlaying)
+				pause.setIcon(new ImageIcon(parent.PAUSE_MUSIC_PATH));
+			else
+				pause.setIcon(new ImageIcon(parent.PLAY_MUSIC_PATH));
+			parent.requestFocusInWindow();
+		}
+	} 
+	private void musicControl() {
+		if(parent.isMusicPlaying) {
+			parent.musicPlayer.pause();
+			parent.isMusicPlaying = false;
+		}
+		else {
+			parent.musicPlayer.play();
+			parent.isMusicPlaying = true;
+		}
+	}
 }

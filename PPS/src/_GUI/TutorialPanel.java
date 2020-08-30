@@ -22,7 +22,7 @@ public class TutorialPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	JFrame parent;
+	MainFrame parent;
 	
 	JButton returnToMenu;
 	final Rectangle MENU_RECT = new Rectangle(600, 640, 100, 45);
@@ -32,6 +32,9 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	
 	JButton previousSlide;
 	final Rectangle PREVIOUS_RECT = new Rectangle(20, 640, 100, 45);
+	
+	JButton pause;
+	final Rectangle PAUSE_RECT = new Rectangle(1250,5,20,20);
 	
 	ImageIcon[] tutorialSlideShow;
 	int slideTotalNumber = 5;
@@ -47,12 +50,19 @@ public class TutorialPanel extends JPanel implements ActionListener{
 	/*
 	 * Handles slideShow
 	 */
-	public TutorialPanel(JFrame parent){
+	public TutorialPanel(MainFrame parent){
 		
 		super();
 		this.parent = parent;
 		this.setLayout(null);
 		this.setBackground();
+		
+		if(parent.isMusicPlaying)
+			this.pause = new JButton(null,new ImageIcon(parent.PAUSE_MUSIC_PATH));
+		else
+			this.pause = new JButton(null,new ImageIcon(parent.PLAY_MUSIC_PATH));
+		this.add(pause);
+		this.pause.setBounds(PAUSE_RECT);
 		
 		this.tutorialSlideShow = new ImageIcon[slideTotalNumber];
 		this.initSlideShow();

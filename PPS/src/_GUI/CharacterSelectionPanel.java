@@ -5,12 +5,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,6 +26,9 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	final Rectangle PAUSE_RECT = new Rectangle(500,5,20,20);
+	final String BACKGROUND_PATH = "resources/cardIcons/characterSelectionBackGround.jpg";
+	
 	MainFrame parent;
 	MainCharactersList charactersList;
 	
@@ -31,14 +37,24 @@ public class CharacterSelectionPanel extends JPanel implements MouseListener, Mo
 	MainCharacterCard warrior;
 	MainCharacterCard archer;
 	
+	JButton pause;
+	
 	Image img;
-	String BACKGROUND_PATH = "resources/cardIcons/characterSelectionBackGround.jpg";
+	
 	
 	public CharacterSelectionPanel(MainFrame parent) {
 		super();
 		this.parent = parent;
 		this.setLayout(null);
 		setBackground();
+		
+		if(parent.isMusicPlaying)
+			this.pause = new JButton(null,new ImageIcon(parent.PAUSE_MUSIC_PATH));
+		else
+			this.pause = new JButton(null,new ImageIcon(parent.PLAY_MUSIC_PATH));
+		this.add(pause);
+		this.pause.setBounds(PAUSE_RECT);
+		pause.addActionListener(parent);
 		
 		charactersList = new MainCharactersList();
 		

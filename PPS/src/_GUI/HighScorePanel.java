@@ -10,8 +10,9 @@ import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -26,11 +27,13 @@ public class HighScorePanel extends JPanel{
 
 	final Rectangle MENU_RECT = new Rectangle(390, 650, 80, 50);
 	final Rectangle TEXT_RECT = new Rectangle (150, 30, 300, 65);
+	final Rectangle PAUSE_RECT = new Rectangle(520,5,20,20);
 
 	JLabel hsText;
-	JFrame parent;
+	MainFrame parent;
 	JButton returnToMenu;
 	JLabel[] hsValues;
+	JButton pause;
 
 	DBManager db;
 	ResultSet rs;
@@ -39,7 +42,7 @@ public class HighScorePanel extends JPanel{
 	Image img;
 	String BACKGROUND_PATH = "resources/cardIcons/highScorePanelBackground.jpg";
 
-	public HighScorePanel(JFrame parent) {
+	public HighScorePanel(MainFrame parent) {
 
 		super();
 		this.parent = parent;
@@ -47,6 +50,13 @@ public class HighScorePanel extends JPanel{
 		setBackground();
 
 		hsValues = new JLabel[10];
+
+		if(parent.isMusicPlaying)
+			this.pause = new JButton(null,new ImageIcon(parent.PAUSE_MUSIC_PATH));
+		else
+			this.pause = new JButton(null,new ImageIcon(parent.PLAY_MUSIC_PATH));
+		this.add(pause);
+		this.pause.setBounds(PAUSE_RECT);
 
 		this.returnToMenu = new JButton("Menu");
 		this.add(returnToMenu);
