@@ -31,10 +31,16 @@ public class CardDeck {
 		
 		minionList = new ArrayList<AbstractCardData>();
 		//add card data here
+		minionList.add(new MinionData("resources/cardIcons/imp.png", "Imp", 1));
 		minionList.add(new MinionData("resources/cardIcons/fireSkull.png", "FireSkull", 2));
 		minionList.add(new MinionData("resources/cardIcons/goblin1.png", "Goblin", 3));	
-		minionList.add(new MinionData("resources/cardIcons/skeletonResized.png", "Skeleton", 4));
+		minionList.add(new MinionData("resources/cardIcons/werewolf.png", "werewolf", 4));
 		minionList.add(new MinionData("resources/cardIcons/trollFico1.png", "Troll", 5));	
+		minionList.add(new MinionData("resources/cardIcons/lucertolone.png", "Lucertolone", 6));
+		minionList.add(new MinionData("resources/cardIcons/polipoTauro.png", "PolipoTauro", 7));
+		minionList.add(new MinionData("resources/cardIcons/dragoToro.png", "DragoToro", 8));
+		minionList.add(new MinionData("resources/cardIcons/dragonRider.png", "Idra", 9));
+		minionList.add(new MinionData("resources/cardIcons/idra.png", "Idra", 10));
 		
 		potionList = new ArrayList<AbstractCardData>();
 		//add card data here
@@ -46,20 +52,31 @@ public class CardDeck {
 		//add card data here
 		repairPotionList.add(new RepairPotionData("resources/cardIcons/repairPotion1.png", "BlueMediumRP", 2));
 		repairPotionList.add(new RepairPotionData("resources/cardIcons/yellowPotion.png", "BlueMediumRP", 3));
-		
+		repairPotionList.add(new RepairPotionData("resources/cardIcons/rp4.png", "rp4", 4));
 		
 		trapList = new ArrayList<AbstractCardData>();
 		//add card data here
+		trapList.add(new TrapData("resources/cardIcons/banana.png", "banana", 1));
+		trapList.add(new TrapData("resources/cardIcons/yellowPotion.png", "fakePotion", 2));	
+		trapList.add(new TrapData("resources/cardIcons/greenPoisonPoton.png", "poisonGreenPotion", 3));	
+		trapList.add(new TrapData("resources/cardIcons/skullPotion.png", "skullPotion", 4));
+		trapList.add(new TrapData("resources/cardIcons/spikeTrap.png", "spikeTrap", 5));
 		trapList.add(new TrapData("resources/cardIcons/mimic.png", "Mimic", 6));	
-		trapList.add(new TrapData("resources/cardIcons/yellowPotion.png", "Mimic", 2));	
+		
 	
 		
 		weaponList = new ArrayList<AbstractCardData>();
 		//add card data here
+		weaponList.add(new WeaponData("resources/cardIcons/GostWoodSword.png", "AlmostAWoodSword", 1));	
 		weaponList.add(new WeaponData("resources/cardIcons/swordResized.png", "StandardSword", 2));	
-		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 6));	
-		weaponList.add(new WeaponData("resources/cardIcons/goldenShield.png", "GoldenShield", 3));	
-	
+		weaponList.add(new WeaponData("resources/cardIcons/almostNewGoldenSword.png", "SpadaQuasiNuova", 3));
+		weaponList.add(new WeaponData("resources/cardIcons/shuriken.png", "Shuriken", 4));
+		weaponList.add(new WeaponData("resources/cardIcons/goldenShield.png", "GoldenShield", 5));	
+		weaponList.add(new WeaponData("resources/cardIcons/whiteBow.png", "whiteBow", 6));	
+		weaponList.add(new WeaponData("resources/cardIcons/dualQualcosa.png", "DualQualcosa", 7));
+		weaponList.add(new WeaponData("resources/cardIcons/SnowSword.png", "SnowSword", 8));
+		weaponList.add(new WeaponData("resources/cardIcons/fireSword.png", "FireSword", 9));
+		weaponList.add(new WeaponData("resources/cardIcons/laserGunResized.png", "LaserGun", 10));
 		
 		goodCategoriesMap = new HashMap<String, List<? super AbstractCardData>>();
 		
