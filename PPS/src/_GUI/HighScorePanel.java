@@ -7,6 +7,8 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,11 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import DataAccess.DBManager;
 
-public class HighScorePanel extends JPanel{
+public class HighScorePanel extends JPanel implements ActionListener{
 
 	/**
 	 * 
@@ -28,16 +31,19 @@ public class HighScorePanel extends JPanel{
 	final Rectangle MENU_RECT = new Rectangle(390, 650, 80, 50);
 	final Rectangle TEXT_RECT = new Rectangle (150, 30, 300, 65);
 	final Rectangle PAUSE_RECT = new Rectangle(520,5,20,20);
-
+	final Rectangle RESET_RECT = new Rectangle(270, 650, 100, 50);
+	
 	JLabel hsText;
 	MainFrame parent;
 	JButton returnToMenu;
 	JLabel[] hsValues;
 	JButton pause;
+	JButton resetScore;
 
 	DBManager db;
 	ResultSet rs;
 	String retrievingQuery = "SELECT * FROM ScoreTable ORDER BY 2 DESC LIMIT 11;";
+	String deletingQuery = "DELETE FROM ScoreTable";
 
 	Image img;
 	String BACKGROUND_PATH = "resources/cardIcons/highScorePanelBackground.jpg";
@@ -62,6 +68,12 @@ public class HighScorePanel extends JPanel{
 		this.add(returnToMenu);
 		this.returnToMenu.setBounds(MENU_RECT);
 
+		this.resetScore = new JButton("Reset Scores");
+		this.add(resetScore);
+		this.resetScore.setBounds(RESET_RECT);
+		this.resetScore.addActionListener(this);
+		
+		
 		this.hsText = new JLabel("HIGH SCORE");
 		this.add(hsText);
 		hsText.setFont(new Font("Calibri", Font.BOLD, 50));
@@ -121,4 +133,30 @@ public class HighScorePanel extends JPanel{
 			}
 		}
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == this.resetScore) {
+			
+			int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to erase your high score?", "For real?", JOptionPane.YES_NO_OPTION);
+			if(reply == JOptionPane.YES_OPTION) {
+				
+				try {
+					db = new DBManager(DBManager.JDBCDriverSQLite, DBManager.JDBCURLSQLite);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					db.executeUpdate(deletingQuery);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				parent.initMainPanel();
+			}
+		}
+	}
+	
 }
