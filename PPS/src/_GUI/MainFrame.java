@@ -32,6 +32,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	public CharacterSelectionPanel characterSelectionPanel;
 	public HighScorePanel highScorePanel;
 	public TutorialPanel tutorialPanel;
+	
 
 	//Constructor, initializes frame and attaches MainPanel
 	public MainFrame() {
@@ -90,6 +91,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 		
 	}
+	/*
+	 * This method creates the introductive panel
+	 */
 	public void initStartingPanel() {
 		
 		startingPanel = new StartingPanel(this);

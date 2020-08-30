@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.MediaTracker;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
@@ -19,6 +20,8 @@ public class MainPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	//Mute button dimension
+		static final Rectangle MUTE = new Rectangle(990, 10, 5, 5);
 	/*
 	 * parent: a reference to the parent frame
 	 * playButton, highScoresButton, tutorialButton: the dynamic part of the panel
@@ -27,6 +30,7 @@ public class MainPanel extends JPanel{
 	JButton playButton;
 	JButton highScoreButton;
 	JButton tutorialButton;
+	JButton mute;
 	
 	Image img;
 	String BACKGROUND_PATH = "resources/cardIcons/MainPanelBackground.jpg";
@@ -45,13 +49,14 @@ public class MainPanel extends JPanel{
 		this.playButton = new JButton("New Game");
 		this.highScoreButton = new JButton("High Score");
 		this.tutorialButton = new JButton("Tutorial");
-	
+		this.mute = new JButton("M");
+		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.insets = new Insets(60, 0, 0, 0);
 		gbc.weighty = parent.getHeight();
-		gbc.weighty = parent.getWidth();
+		gbc.weightx = parent.getWidth();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.ipadx = 750;	//It is the number of pixels added to the standard width of the JButton
@@ -67,6 +72,11 @@ public class MainPanel extends JPanel{
 		gbc.anchor = GridBagConstraints.SOUTH;
 		this.add(this.tutorialButton, gbc);
 		
+		gbc.insets = new Insets(5, 0, 0, 5);
+		gbc.ipadx = 5;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHEAST;
+		this.add(mute, gbc);
 	}
 	
 	public void setBackground() {

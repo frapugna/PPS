@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,9 +19,10 @@ public class StartingPanel extends JPanel implements MouseListener{
 
 	final Rectangle START_RECT = new Rectangle(425, 235, 800, 100);
 	final Rectangle BACKGROUND_RECT = new Rectangle(0, 0, 1200, 694);
+	final Rectangle MUTE_RECT = new Rectangle(990,5,5,5);
 	MainFrame parent;
 	
-	JLabel title;
+	JButton mute;
 	JLabel start;
 	
 	String BACKGROUND_PATH = "resources/cardIcons/startingPanelBackground.jpg";
@@ -31,11 +33,16 @@ public class StartingPanel extends JPanel implements MouseListener{
 		super();
 		this.parent = parent;
 		this.setLayout(null);
+		
 		start = new JLabel("CLICK ANYWHERE TO START");
 		start.setFont(new Font("Calibri", Font.BOLD, 30));
 		this.add(start);
 		start.setBounds(START_RECT);
 		
+		mute = new JButton("M");
+		this.add(mute);
+		mute.setBounds(MUTE_RECT);
+		mute.requestFocusInWindow();
 		bGround = new JLabel(backGround);
 		this.add(bGround);
 		bGround.setBounds(BACKGROUND_RECT);
