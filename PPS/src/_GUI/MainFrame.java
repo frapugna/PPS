@@ -23,7 +23,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	final int FRAME_WIDTH = 1000, FRAME_HEIGHT = 500;
 	static final String WINDOW_TITLE = "CardVenture";
 
-	final String MUSIC_PATH = "resources/UpInMyJam.wav";
+	final String MUSIC_PATH = "resources/BGM.wav";
 	final String ICON_PATH = "resources/AppIcon/AppIcon128x128.png";
 	final String PLAY_MUSIC_PATH = "resources/AppIcon/playButton.png";
 	final String PAUSE_MUSIC_PATH = "resources/AppIcon/pauseMusic.png";
