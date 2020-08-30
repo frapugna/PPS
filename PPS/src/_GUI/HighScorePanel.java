@@ -34,7 +34,7 @@ public class HighScorePanel extends JPanel{
 
 	DBManager db;
 	ResultSet rs;
-	String retrievingQuery = "SELECT * FROM ScoreTable ORDER BY 2 DESC LIMIT 10;";
+	String retrievingQuery = "SELECT * FROM ScoreTable ORDER BY 2 DESC LIMIT 11;";
 
 	Image img;
 	String BACKGROUND_PATH = "resources/cardIcons/highScorePanelBackground.jpg";
@@ -99,7 +99,7 @@ public class HighScorePanel extends JPanel{
 
 			int score = rs.getInt(2);
 			String user = rs.getString(3);
-			if(user.compareTo("null") != 0) {
+			if(user.compareTo("null") != 0 && !user.isEmpty()) {
 				String text = (cnt + 1) + "      " + user + " : " + score;
 				hsValues[cnt] = new JLabel(text);
 
